@@ -3,9 +3,9 @@
 Looking to get data out of json into treasure data? You can do that with [fluentd](//fluentd.org) in **10 minutes**!
 
 <table>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/json.png"/></td>
+  <td>![](/images/plugin_icon/json.png)</td>
   <td><span style="font-size:50px">&#8594;</span></td>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/treasure data.png"/></td>
+  <td>![](/images/plugin_icon/treasure_data.png)</td>
 </table>
 
 Here is how:
@@ -26,7 +26,7 @@ Here is how:
       format json # one JSON per line
       time_key time_field # optional; default = time
     </source>
-    
+
     <match **>
       type tdlog
       apikey <Treasure Data API key> # You get your API key by signing up for Treasure Data

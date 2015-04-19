@@ -3,9 +3,9 @@
 Looking to get data out of csv into treasure data? You can do that with [fluentd](//fluentd.org) in **10 minutes**!
 
 <table>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/csv.png"/></td>
+  <td>![](/images/plugin_icon/csv.png)</td>
   <td><span style="font-size:50px">&#8594;</span></td>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/treasure data.png"/></td>
+  <td>![](/images/plugin_icon/treasure_data.png)</td>
 </table>
 
 Here is how:
@@ -27,7 +27,7 @@ Here is how:
       keys key1, key2, key3 # e.g., user_id, timestamp, action
       time_key key2 # Specify the column that you want to use as timestamp
     </source>
-    
+
     <match **>
       type tdlog
       apikey <Treasure Data API key> # You get your API key by signing up for Treasure Data

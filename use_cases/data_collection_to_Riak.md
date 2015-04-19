@@ -2,9 +2,7 @@
 
 This article explains how to use Fluentd’s Riak Output plugin ([out_riak](https://github.com/kuenishi/fluent-plugin-riak)) to aggregate semi-structured logs in real-time.
 
-<center>
-<img src="http://docs.fluentd.org/images/fluentd-riak.png" height="280px"/>
-</center>
+![](/images/fluentd-riak.png)
 
 ## Prerequisites
 
@@ -15,7 +13,7 @@ This article explains how to use Fluentd’s Riak Output plugin ([out_riak](http
 
 ## Installing the Fluentd Riak Output Plugin
 
-The [Riak output plugin](https://github.com/kuenishi/fluent-plugin-riak) is used to output data from a Fluentd node to a Riak node. 
+The [Riak output plugin](https://github.com/kuenishi/fluent-plugin-riak) is used to output data from a Fluentd node to a Riak node.
 
 ### Rubygems Users
 

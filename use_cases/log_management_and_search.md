@@ -4,18 +4,13 @@
 
 [Splunk](http://www.splunk.com/) is a great tool for searching logs, but its high cost makes it prohibitive for many teams. In this article, we present a free and open source alternative to Splunk by combining three open source projects: Elasticsearch, Kibana, and Fluentd.
 
-<center>
-<img src="/images/kibana-screenshot.png" width="90%"/><br />
-</center><br/>
-<br/>
+![](/images/kibana-screenshot.png)
 
 [Elasticsearch](http://www.elasticsearch.org/) is an open source search engine known for its ease of use. [Kibana](http://kibana.org/) is an open source Web UI that makes Elasticsearch user friendly for marketers, engineers and data scientists alike.
 
 By combining these three tools (Fluentd + Elasticsearch + Kibana) we get a scalable, flexible, easy to use log search engine with a great Web UI that provides an open-source Splunk alternative, all for free.
 
-<center>
-<img width="540" src="/images/fluentd-elasticsearch-kibana.png"/>
-</center><br /><br />
+![](/images/fluentd-elasticsearch-kibana.png)
 
 In this guide, we will go over installation, setup, and basic use of this combined log search solution. This article was tested on Mac OS X Mountain Lion. **If you're not familiar with Fluentd**, please learn more about Fluentd first.
 
@@ -128,7 +123,7 @@ Please restart the rsyslog service once the modification is complete.
 
 Once Fluentd receives some event logs from rsyslog and has flushed them to Elasticsearch, you can search the stored logs using Kibana by accessing Kibana's index.html in your browser.
 
-<center><img src="/images/kibana-screenshot.png" width="90%"/></center><br/><br/>
+![](/images/kibana-screenshot.png)
 
 To manually send logs to Elasticsearch, please use the `logger` command.
 

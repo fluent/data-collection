@@ -3,9 +3,9 @@
 Looking to get data out of nginx into treasure data? You can do that with [fluentd](//fluentd.org) in **10 minutes**!
 
 <table>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/nginx.png"/></td>
+  <td>![](/images/plugin_icon/nginx.png)</td>
   <td><span style="font-size:50px">&#8594;</span></td>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/treasure data.png"/></td>
+  <td>![](/images/plugin_icon/treasure_data.png)</td>
 </table>
 
 Here is how:
@@ -25,7 +25,7 @@ Here is how:
       tag nginx.access #fluentd tag!
       format nginx # Do you have a custom format? You can write your own regex.
     </source>
-    
+
     <match **>
       type tdlog
       apikey <Treasure Data API key> # You get your API key by signing up for Treasure Data

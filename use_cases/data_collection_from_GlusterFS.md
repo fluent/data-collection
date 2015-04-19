@@ -13,7 +13,7 @@ This article shows how to use Fluentd to collect GlusterFS logs for analysis (se
 
 The rest of this article explains how to set up Fluentd with GlusterFS. For this example, we chose Elasticsearch as the backend system.
 
-<img src="/images/glusterfs-fluentd.png"/>
+![](/images/glusterfs-fluentd.png)
 
 ##Setting up Fluentd on GlusterFS Nodes
 
@@ -53,7 +53,7 @@ This is what the configuration file should look like:
 
     :::term
     $ sudo cat /etc/td-agent/td-agent.conf
-     
+
     <source>
       type glusterfs_log
       path /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
@@ -61,7 +61,7 @@ This is what the configuration file should look like:
       tag glusterfs_log.glusterd
       format /^(?<message>.*)$/
     </source>
-     
+
     <match glusterfs_log.**>
       type forward
       send_timeout 60s
@@ -69,14 +69,14 @@ This is what the configuration file should look like:
       heartbeat_interval 1s
       phi_threshold 8
       hard_timeout 60s
-     
+
       <server>
         name logserver
         host 172.31.10.100
         port 24224
         weight 60
       </server>
-     
+
       <secondary>
         type file
         path /var/log/td-agent/forward-failed
@@ -113,7 +113,7 @@ Then, configure Fluentd as follows:
       port 24224
       bind 0.0.0.0
     </source>
-     
+
     <match glusterfs_log.glusterd>
       type copy
 

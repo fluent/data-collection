@@ -2,10 +2,7 @@
 
 [Raspberry Pi](http://www.raspberrypi.org/) is a credit-card-sized single-board computer. Because it is low-cost and easy to equip with various types of sensors, using Raspberry Pi as a cloud data logger is one of its ideal use cases.
 
-<center>
-<img src="/images/raspberry-pi-cloud-data-logger.png" width="400px"/>
-</center>
-<br /><br />
+![](/images/raspberry-pi-cloud-data-logger.png)
 
 This article introduces how to transport sensor data from Raspberry Pi to the cloud, using Fluentd as the data collector. For the cloud side, we'll use the [Treasure Data](http://www.fluentd.org/treasuredata) cloud data service as an example, but you can use any cloud service in its place.
 
@@ -47,7 +44,7 @@ Please prepare the `fluentd.conf` file with the following information, including
     <match td.*.*>
       type tdlog
       apikey YOUR_API_KEY_HERE
- 
+
       auto_create_table
       buffer_type file
       buffer_path /home/pi/fluentd/td

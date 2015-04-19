@@ -16,9 +16,7 @@ This article will show you how to integrate [Fluentd](http://fluentd.org/), [Nor
 
 The figure below shows the high-level architecture.
 
-<center>
-<img src="/images/fluentd-norikra-overview.png" />
-</center>
+![](/images/fluentd-norikra-overview.png)
 
 ## Installation
 
@@ -30,7 +28,7 @@ For the sake of simplicity, this guide will set up a one-node configuration. Ple
 
 ### Installing Fluentd and fluentd-plugin-norikra
 
-Fluentd can be installed through rubygems or via deb/rpm packages. 
+Fluentd can be installed through rubygems or via deb/rpm packages.
 
 * [Debian Package](install-by-deb)
 * [RPM Package](install-by-rpm)
@@ -78,7 +76,7 @@ The output destination will be Norikra. The output configuration should look lik
       norikra localhost:26571
       target_map_tag    true
       remove_tag_prefix data
-      
+
       <default>
         include *
         exclude time

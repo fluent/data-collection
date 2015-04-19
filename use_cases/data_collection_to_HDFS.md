@@ -14,9 +14,7 @@ This article will show you how to use [Fluentd](http://fluentd.org/) to receive 
 
 The figure below shows the high-level architecture.
 
-<center>
-<img src="/images/http-to-hdfs.png" />
-</center>
+![](/images/http-to-hdfs.png)
 
 ## Install
 
@@ -74,12 +72,12 @@ Append operations are not enabled by default. Please put these configurations in
       <name>dfs.webhdfs.enabled</name>
       <value>true</value>
     </property>
-    
+
     <property>
       <name>dfs.support.append</name>
       <value>true</value>
     </property>
-    
+
     <property>
       <name>dfs.support.broken.append</name>
       <value>true</value>

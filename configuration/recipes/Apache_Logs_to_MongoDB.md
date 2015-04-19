@@ -3,9 +3,9 @@
 Looking to get data out of apache logs into mongo? You can do that with [fluentd](//fluentd.org) in **10 minutes**!
 
 <table>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/apache logs.png"/></td>
+  <td>![](/images/plugin_icon/apache logs.png)</td>
   <td><span style="font-size:50px">&#8594;</span></td>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/mongo.png"/></td>
+  <td>![](/images/plugin_icon/mongo.png)</td>
 </table>
 
 Here is how:
@@ -25,7 +25,7 @@ Here is how:
       tag apache.access #fluentd tag!
       format apache2 # Do you have a custom format? You can write your own regex.
     </source>
-    
+
     <match **>
       type mongo
       database <db name> #(required)

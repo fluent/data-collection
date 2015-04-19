@@ -14,15 +14,13 @@ This article will show you how to use [Fluentd](http://fluentd.org/) to receive 
 
 The figure below shows the high-level architecture.
 
-<center>
-<img width="600" src="/images/treasuredata_architecture.png" />
-</center><br /><br />
+![](/images/treasuredata_architecture.png)
 
 ## Install
 
 For simplicity, this article will describe how to set up an one-node configuration. Please install the following software on the same node.
 
-* [Fluentd](http://fluentd.org/) 
+* [Fluentd](http://fluentd.org/)
 * [TD Output Plugin](https://github.com/treasure-data/fluent-plugin-td)
 
 The TD Output plugin is included in Fluentd’s deb/rpm package (`td-agent`) by default. If you want to use Ruby Gems to install the plugin, please use `gem install fluent-plugin-td`.

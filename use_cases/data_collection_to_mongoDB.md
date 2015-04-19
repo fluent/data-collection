@@ -14,9 +14,8 @@ This article will show you how to use [Fluentd](http://fluentd.org/) to import A
 
 The figure below shows how things will work.
 
-<center>
-<img src="/images/apache-to-mongodb.png" />
-</center>
+
+![](/images/apache-to-mongodb.png)
 
 Fluentd does 3 things:
 

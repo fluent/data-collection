@@ -3,9 +3,9 @@
 Looking to get data out of json into s3? You can do that with [fluentd](//fluentd.org) in **10 minutes**!
 
 <table>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/json.png"/></td>
+  <td>![](/images/plugin_icon/json.png)</td>
   <td><span style="font-size:50px">&#8594;</span></td>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/s3.png"/></td>
+  <td>![](/images/plugin_icon/s3.png)</td>
 </table>
 
 Here is how:
@@ -26,7 +26,7 @@ Here is how:
       format json # one JSON per line
       time_key time_field # optional; default = time
     </source>
-    
+
     <match **>
       type s3
       path <s3 path> #(optional; default="")

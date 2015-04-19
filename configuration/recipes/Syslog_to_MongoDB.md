@@ -3,9 +3,9 @@
 Looking to get data out of syslog into mongo? You can do that with [fluentd](//fluentd.org) in **10 minutes**!
 
 <table>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/syslog.png"/></td>
+  <td>![](/images/plugin_icon/syslog.png)</td>
   <td><span style="font-size:50px">&#8594;</span></td>
-  <td><img style="display:inline;width:250px" src="/images/plugin_icon/mongo.png"/></td>
+  <td>![](/images/plugin_icon/mongo.png)</td>
 </table>
 
 Here is how:
@@ -24,7 +24,7 @@ Here is how:
       bind 0.0.0.0
       tag system.local
     </source>
-    
+
     <match **>
       type mongo
       database <db name> #(required)
