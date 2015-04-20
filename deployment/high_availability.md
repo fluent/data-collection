@@ -1,6 +1,6 @@
 # Fluentd High Availability Configuration
 
-For high-traffic websites, we recommend using a high availability configuration of `Fluentd`. 
+For high-traffic websites, we recommend using a high availability configuration of `Fluentd`.
 
 ## Message Delivery Semantics
 
@@ -12,7 +12,7 @@ In such systems, several delivery guarantees are possible:
 * *At least once*: Each message is delivered at least once. In failure cases, messages may be delivered twice.
 * *Exactly once*: Each message is delivered once and only once. This is what people want.
 
-If the system "can't lose a single event", and must also transfer "*exactly once*", then the system must stop ingesting events when it runs out of write capacity. The proper approach would be to use synchronous logging and return errors when the event cannot be accepted. 
+If the system "can't lose a single event", and must also transfer "*exactly once*", then the system must stop ingesting events when it runs out of write capacity. The proper approach would be to use synchronous logging and return errors when the event cannot be accepted.
 
 That's why *Fluentd provides 'At most once' and 'At least once' transfers*. In order to collect massive amounts of data without impacting application performance, a data logger must transfer data asynchronously. This improves performance at the cost of potential delivery failures.
 
@@ -34,13 +34,12 @@ Fluentd can act as either a log forwarder or a log aggregator, depending on its 
 
 Please add the following lines to your config file for log forwarders. This will configure your log forwarders to transfer logs to log aggregators.
 
-    :::term
     # TCP input
     <source>
       type forward
       port 24224
     </source>
-    
+
     # HTTP input
     <source>
       type http
@@ -62,7 +61,7 @@ Please add the following lines to your config file for log forwarders. This will
         port 24224
         standby
       </server>
-    
+
       # use longer flush_interval to reduce CPU usage.
       # note that this is a trade-off against latency.
       flush_interval 60s
@@ -74,13 +73,12 @@ When the active aggregator (192.168.0.1) dies, the logs will instead be sent to 
 
 Please add the following lines to the config file for log aggregators. The input source for the log transfer is TCP.
 
-    :::term
     # Input
     <source>
       type forward
       port 24224
     </source>
-    
+
     # Output
     <match mytag.**>
       ...
@@ -117,8 +115,9 @@ However, possible message loss scenarios do exist:
 ### "no nodes are available"
 Please make sure that you can communicate with port 24224 using **not only TCP, but also UDP**. These commands will be useful for checking the network configuration.
 
-    :::term
-    $ telnet host 24224
-    $ nmap -p 24224 -sU host
+```bash
+$ telnet host 24224
+$ nmap -p 24224 -sU host
+```
 
 Please note that there is one [known issue](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2019944) where VMware will occasionally lose small UDP packages used for heartbeat.

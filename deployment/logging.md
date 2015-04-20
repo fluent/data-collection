@@ -1,6 +1,6 @@
 # Logging of Fluentd
 
-This article describes Fluentd's logging mechanism. 
+This article describes Fluentd's logging mechanism.
 
 Fluentd has two log layers: global and per plugin. Different log levels can be set for global logging and plugin level logging.
 
@@ -26,9 +26,10 @@ The global log level can be adjusted up or down.
 
 The `-v` option sets the verbosity to `debug` while the `-vv` option sets the verbosity to `trace`.
 
-    :::term
-    $ fluentd -v  ... # debug level
-    $ fluentd -vv ... # trace level
+```bash
+$ fluentd -v  ... # debug level
+$ fluentd -vv ... # trace level
+```
 
 These options are useful for debugging purposes.
 
@@ -36,13 +37,14 @@ These options are useful for debugging purposes.
 
 The `-q` option sets the verbosity to `warn` while the `-qq` option sets the verbosity to `error`.
 
-    :::term
-    $ fluentd -q  ... # warn level
-    $ fluentd -qq ... # error level
+```bash
+$ fluentd -q  ... # warn level
+$ fluentd -qq ... # error level
+```
 
 ## Per Plugin Log (Fluentd v0.10.43 and above)
 
-The `log_level` option sets different levels of logging for each plugin. It can be set in each plugin's configuration file. 
+The `log_level` option sets different levels of logging for each plugin. It can be set in each plugin's configuration file.
 
 For example, in order to debug [in_tail](in_tail) but suppress all but fatal log messages for [in_http](in_http), their respective `log_level` options should be set as follows:
 
@@ -66,7 +68,6 @@ NOTE: Some plugins haven't supported per-plugin logging yet. The <a href="plugin
 Fluentd can suppress same stacktrace with `--suppress-repeated-stacktrace`.
 For example, if you pass `--suppress-repeated-stacktrace` to fluentd:
 
-    :::term
     2013-12-04 15:05:53 +0900 [warn]: fluent/engine.rb:154:rescue in emit_stream: emit transaction failed  error_class = RuntimeError error = #<RuntimeError: syslog>
       2013-12-04 15:05:53 +0900 [warn]: fluent/engine.rb:140:emit_stream: /Users/repeatedly/devel/fluent/fluentd/lib/fluent/plugin/out_stdout.rb:43:in `emit'
       [snip]
@@ -78,7 +79,6 @@ For example, if you pass `--suppress-repeated-stacktrace` to fluentd:
 
 logs are changed to:
 
-    :::term
     2013-12-04 15:05:53 +0900 [warn]: fluent/engine.rb:154:rescue in emit_stream: emit transaction failed  error_class = RuntimeError error = #<RuntimeError: syslog>
       2013-12-04 15:05:53 +0900 [warn]: fluent/engine.rb:140:emit_stream: /Users/repeatedly/devel/fluent/fluentd/lib/fluent/plugin/o/2.0.0/gems/cool.io-1.1.1/lib/cool.io/loop.rb:96:in `run'
       [snip]
@@ -93,8 +93,9 @@ Same stacktrace is replaced with `suppressed same stacktrace` message until othe
 
 Fluentd outputs logs to `STDOUT` by default. To output to a file instead, please specify the `-o` option.
 
-    :::term
-    $ fluentd -o /path/to/log_file
+```bash
+$ fluentd -o /path/to/log_file
+```
 
 NOTE: Fluentd doesn't support log rotation yet.
 
@@ -157,4 +158,3 @@ Monitoring server example:
 If an error occurs, you will get a notification message in your irc `notify` channel.
 
     01:01  fluentd: [11:10:24] notice: fluent.warn [2014/02/27 01:00:00] @leaf.server.domain detached forwarding server 'server.name'
-

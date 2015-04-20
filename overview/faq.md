@@ -31,33 +31,38 @@ td-agent has own Ruby so you should install gems into td-agent's Ruby, not syste
 
 Please use `td-agent-gem` as shown below.
 
-    :::term
-    $ /usr/sbin/td-agent-gem install <plugin name>
+```bash
+$ /usr/sbin/td-agent-gem install <plugin name>
+```
 
 For example, issue the following command if you are adding `fluent-plugin-twitter`.
 
-    :::term
-    $ /usr/sbin/td-agent-gem install fluent-plugin-twitter
+```bash
+$ /usr/sbin/td-agent-gem install fluent-plugin-twitter
+```
 
 #### td-agent 1:
 
 Please use `fluent-gem` as shown below.
 
-    :::term
-    $ /usr/lib/fluent/ruby/bin/fluent-gem install <plugin name>
+```bash
+$ /usr/lib/fluent/ruby/bin/fluent-gem install <plugin name>
+```
 
 For example, issue the following command if you are adding `fluent-plugin-twitter`.
 
-    :::term
-    $ /usr/lib/fluent/ruby/bin/fluent-gem install fluent-plugin-twitter
+```bash
+$ /usr/lib/fluent/ruby/bin/fluent-gem install fluent-plugin-twitter
+```
 
 (If you can't find fluent-gem in the above directory, try looking in `/usr/lib64/fluent/ruby/bin/fluent-gem`)
 
 Now you might be wondering, "Why do I need to specify the full path?" The reason is that td-agent does not modify any host environment variable, including `PATH`. If you want to make all td-agent/fluentd related programs available without writing "/usr/lib/..." every time, you can add
 
-    :::bash
-    export PATH=$PATH:/opt/td-agent/embedded/bin/ # td-agent 2
-    export PATH=$PATH:/usr/lib/fluent/ruby/bin/   # td-agent 1
+```bash
+$ export PATH=$PATH:/opt/td-agent/embedded/bin/ # td-agent 2
+$ export PATH=$PATH:/usr/lib/fluent/ruby/bin/   # td-agent 1
+```
 
 to your `~/.bash_profile`.
 
@@ -71,7 +76,7 @@ You can use the `copy` [output plugin](/articles/out_copy) to send the same even
 
 Use `"#{ENV['YOUR_ENV_VARIABLE']}"`. For example,
 
-    
+
     some_field "#{ENV['FOO_HOME']}"
 
 (Note that it must be double quotes and not single quotes)

@@ -20,25 +20,28 @@ Please download the `.dmg` file from [here](http://www.fluentd.org/download), an
 
 You can launch `td-agent` with `launchctl` command. Please make sure the daemon started correctly from the log (`/var/log/td-agent/td-agent.log`).
 
-    :::term
-    $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
-    $ less /var/log/td-agent/td-agent.log
-    2013-04-19 16:55:03 -0700 [info]: starting fluentd-0.10.33
-    2013-04-19 16:55:03 -0700 [info]: reading config file path="/etc/td-agent/td-agent.conf"
+```bash
+$ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
+$ less /var/log/td-agent/td-agent.log
+2013-04-19 16:55:03 -0700 [info]: starting fluentd-0.10.33
+2013-04-19 16:55:03 -0700 [info]: reading config file path="/etc/td-agent/td-agent.conf"
+```
 
 **Your configuration file** is located at `/etc/td-agent/td-agent.conf`. Your plugin directory is at `/etc/td-agent/plugin`. In case you want to stop the agent, please execute the command below.
 
-    :::term
-    $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
+```bash
+$ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
+```
 
 ## Step3: Post Sample Logs via HTTP
 
 By default, `/etc/td-agent/td-agent.conf` is configured to take logs from HTTP and route them to stdout (`/var/log/td-agent/td-agent.log`). You can post sample log records using the curl command.
 
-    :::term
-    $ curl -X POST -d 'json={"json":"message"}' http://localhost:8888/debug.test
-    $ tail -n 1 /var/log/td-agent/td-agent.log
-    2013-04-19 16:51:47 -0700 debug.test: {"json":"message"}
+```bash
+$ curl -X POST -d 'json={"json":"message"}' http://localhost:8888/debug.test
+$ tail -n 1 /var/log/td-agent/td-agent.log
+2013-04-19 16:51:47 -0700 debug.test: {"json":"message"}
+```
 
 ## Next Steps
 

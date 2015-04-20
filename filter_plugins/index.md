@@ -14,7 +14,6 @@ Filter plugins enables Fluentd to modify event streams. Example use cases are:
 
 It is used with the `<filter>` directive as follows:
 
-    :::term
     <filter foo.bar>
       type grep
       regexp1 message cool
@@ -24,7 +23,6 @@ The above directive matches events with the tag "foo.bar", and if the "message" 
 
 Like the `<match>` directive for output plugins, `<filter>` matches against a tag. Once the event is processed by the filter, the event proceeds through the configuration top-down. Hence, if there are multiple filters for the same tag, they are applied in descending order. Hence, in the following example,
 
-    :::term
     <filter foo.bar>
       type grep
       regexep1 message cool

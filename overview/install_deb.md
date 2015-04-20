@@ -26,28 +26,33 @@ A shell script is provided to automate the installation process for each version
 
 For Trusty,
 
-    :::term
-    curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh
+```bash
+$ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh
+```
 
 For Precise,
 
-    :::term
-    curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
+```bash
+$ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
+```
 
 For Lucid,
 
-    :::term
-    curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
+```bash
+$ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
+```
 
 For Debian Wheezy,
 
-    :::term
-    curl -L http://toolbelt.treasuredata.com/sh/install-debian-wheezy-td-agent2.sh | sh
+```bash
+$ curl -L http://toolbelt.treasuredata.com/sh/install-debian-wheezy-td-agent2.sh | sh
+```
 
 For Debian Squeeze,
 
-    :::term
-    curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
+```bash
+$ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
+```
 
 NOTE: It's HIGHLY recommended that you set up <b>ntpd</b> on the node to prevent invalid timestamps in your logs.
 
@@ -61,11 +66,12 @@ The `/etc/init.d/td-agent` script is provided to start, stop, or restart the age
 
 The following commands are supported:
 
-    :::term
-    $ /etc/init.d/td-agent start
-    $ /etc/init.d/td-agent stop
-    $ /etc/init.d/td-agent restart
-    $ /etc/init.d/td-agent status
+```bash
+$ /etc/init.d/td-agent start
+$ /etc/init.d/td-agent stop
+$ /etc/init.d/td-agent restart
+$ /etc/init.d/td-agent status
+```
 
 Please make sure **your configuration file** is located at `/etc/td-agent/td-agent.conf`.
 
@@ -73,8 +79,9 @@ Please make sure **your configuration file** is located at `/etc/td-agent/td-age
 
 By default, `/etc/td-agent/td-agent.conf` is configured to take logs from HTTP and route them to stdout (`/var/log/td-agent/td-agent.log`). You can post sample log records using the curl command.
 
-    :::term
-    $ curl -X POST -d 'json={"json":"message"}' http://localhost:8888/debug.test
+```bash
+$ curl -X POST -d 'json={"json":"message"}' http://localhost:8888/debug.test
+```
 
 ## Next Steps
 

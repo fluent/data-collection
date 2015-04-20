@@ -14,22 +14,25 @@ Please install Ruby >= 1.9.3 on your local environment.
 
 Fetch and install the `fluentd` Ruby gem using the `gem` command. The official ruby gem page is [here](https://rubygems.org/gems/fluentd).
 
-    :::term
-    $ gem install fluentd --no-ri --no-rdoc
+```bash
+$ gem install fluentd --no-ri --no-rdoc
+```
 
 ## Step3: Run
 
 Run the following commands to confirm that Fluentd was installed successfully:
 
-    :::term
-    $ fluentd --setup ./fluent
-    $ fluentd -c ./fluent/fluent.conf -vv &
-    $ echo '{"json":"message"}' | fluent-cat debug.test
+```bash
+$ fluentd --setup ./fluent
+$ fluentd -c ./fluent/fluent.conf -vv &
+$ echo '{"json":"message"}' | fluent-cat debug.test
+```
 
 The last command sends Fluentd a message ‘{“json”:”message”}’ with a “debug.test” tag. If the installation was successful, Fluentd will output the following message:
 
-    :::term
-    2011-07-10 16:49:50 +0900 debug.test: {"json":"message"}
+```
+2011-07-10 16:49:50 +0900 debug.test: {"json":"message"}
+```
 
 NOTE: It's HIGHLY recommended that you set up <b>ntpd</b> on the node to prevent invalid timestamps in your logs.
 
