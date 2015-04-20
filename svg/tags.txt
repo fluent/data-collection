@@ -1,0 +1,7 @@
+SVG with Tags created using the following site:
+
+  https://www.jasondavies.com/wordcloud/#
+
+Tags used are:
+
+"Apache Systemd Nginx Syslog MongoDB Amazon-S3 CSV TSV TreasureData HTTP Elasticsearch Ruby Python PHP Java Scala HDFS Riak Windows Linux RaspberryPi GlusterFS Fluentd Perl JSON High-Availability Logging Monitoring"
