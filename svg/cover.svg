@@ -15,8 +15,8 @@
    version="1.1"
    inkscape:version="0.48.5 r10040"
    inkscape:export-filename="/home/edsiper/coding/fluentd-book/cover_small.png"
-   inkscape:export-xdpi="10.011543"
-   inkscape:export-ydpi="10.011543"
+   inkscape:export-xdpi="10.486376"
+   inkscape:export-ydpi="10.486376"
    sodipodi:docname="cover.svg">
   <defs
      id="defs4">
@@ -81,7 +81,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
      inkscape:cx="295.29291"
-     inkscape:cy="1032.8566"
+     inkscape:cy="1147.1423"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -98,7 +98,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -116,7 +116,7 @@
        id="rect3050"
        style="fill:#e2e6eb;fill-opacity:1;stroke:none" />
     <g
-       transform="matrix(0.40301126,0,0,-0.40301126,336.27605,256.72665)"
+       transform="matrix(0.40301126,0,0,-0.40301126,368.56176,240.15522)"
        inkscape:label="Fluentd Alt(1)"
        id="g3012">
       <g
@@ -340,138 +340,138 @@
        transform="matrix(2.7090024,0,0,2.7090024,-262.97925,-286.0667)" />
     <text
        id="text3263"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#e7ba52;font-family:Impact"
-       x="987.38623"
-       y="303.27106">Apache</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#e7ba52;font-family:Impact"
+       x="972.44104"
+       y="289.05133">Apache</text>
     <text
        id="text3265"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#843c39;font-family:Impact"
-       x="1073.5295"
-       y="709.61304">Systemd</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#843c39;font-family:Impact"
+       x="1061.4083"
+       y="708.71399">Systemd</text>
     <text
        id="text3267"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#e7cb94;font-family:Impact"
-       x="1030.7241"
-       y="494.66418">Nginx</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#e7cb94;font-family:Impact"
+       x="1017.1996"
+       y="486.71872">Nginx</text>
     <text
        id="text3269"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#ad494a;font-family:Impact"
-       x="1361.5674"
-       y="447.44562">Syslog</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#ad494a;font-family:Impact"
+       x="1358.8885"
+       y="437.95221">Syslog</text>
     <text
        id="text3271"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#d6616b;font-family:Impact"
-       x="835.54401"
-       y="508.62238">MongoDB</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#d6616b;font-family:Impact"
+       x="815.62109"
+       y="501.13449">MongoDB</text>
     <text
        id="text3273"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#e7969c;font-family:Impact"
-       x="875.87317"
-       y="599.64447">AmazonS3</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#e7969c;font-family:Impact"
+       x="857.27234"
+       y="595.14044">AmazonS3</text>
     <text
        id="text3275"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#7b4173;font-family:Impact"
-       x="1022.2156"
-       y="204.43201">CSV</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#7b4173;font-family:Impact"
+       x="1008.4122"
+       y="186.97214">CSV</text>
     <text
        id="text3277"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#a55194;font-family:Impact"
-       x="1076.821"
-       y="582.0351">TSV</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#a55194;font-family:Impact"
+       x="1064.8077"
+       y="576.9538">TSV</text>
     <text
        id="text3279"
-       style="font-size:49.52915192px;text-anchor:middle;fill:#db8613;fill-opacity:1;font-family:Impact"
-       x="447.72006"
-       y="336.73456">TreasureData</text>
+       style="font-size:51.15281677px;text-anchor:middle;fill:#db8613;fill-opacity:1;font-family:Impact"
+       x="415.08353"
+       y="323.61182">TreasureData</text>
     <text
        id="text3281"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#de9ed6;font-family:Impact"
-       x="1191.7083"
-       y="266.40796">HTTP</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#de9ed6;font-family:Impact"
+       x="1183.4612"
+       y="250.97978">HTTP</text>
     <text
        id="text3283"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#d3b562;fill-opacity:1;font-family:Impact"
-       x="799.2561"
-       y="405.64282">Elasticsearch</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#d3b562;fill-opacity:1;font-family:Impact"
+       x="778.14362"
+       y="394.77905">Elasticsearch</text>
     <text
        id="text3285"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#5254a3;font-family:Impact"
-       x="880.50836"
-       y="235.75621">Ruby</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#5254a3;font-family:Impact"
+       x="862.05951"
+       y="219.32321">Ruby</text>
     <text
        id="text3287"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#6b6ecf;font-family:Impact"
-       x="390.1535"
-       y="442.16959">Python</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#6b6ecf;font-family:Impact"
+       x="355.62979"
+       y="432.50323">Python</text>
     <text
        id="text3289"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#9c9ede;font-family:Impact"
-       x="1016.5962"
-       y="395.02902">PHP</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#9c9ede;font-family:Impact"
+       x="1002.6086"
+       y="383.81729">PHP</text>
     <text
        id="text3291"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#637939;font-family:Impact"
-       x="1222.549"
-       y="516.88019">Java</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#637939;font-family:Impact"
+       x="1215.3129"
+       y="509.66299">Java</text>
     <text
        id="text3293"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#8ca252;font-family:Impact"
-       x="1178.4138"
-       y="180.6245">Scala</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#8ca252;font-family:Impact"
+       x="1169.7308"
+       y="162.38417">Scala</text>
     <text
        id="text3295"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#cedb9c;font-family:Impact"
-       x="1332.5808"
-       y="157.88756">HDFS</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#cedb9c;font-family:Impact"
+       x="1328.9518"
+       y="138.90186">HDFS</text>
     <text
        id="text3297"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#8c6d31;font-family:Impact"
-       x="564.70959"
-       y="425.62851">Riak</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#8c6d31;font-family:Impact"
+       x="535.9082"
+       y="415.41989">Riak</text>
     <text
        id="text3299"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#bd9e39;font-family:Impact"
-       x="729.28638"
-       y="310.94742">Windows</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#bd9e39;font-family:Impact"
+       x="705.88013"
+       y="296.97934">Windows</text>
     <text
        id="text3301"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#e7ba52;font-family:Impact"
-       x="1392.7637"
-       y="256.23227">Linux</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#e7ba52;font-family:Impact"
+       x="1391.1075"
+       y="240.4705">Linux</text>
     <text
        id="text3303"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#e7cb94;font-family:Impact"
-       x="602.90662"
-       y="630.19855">RaspberryPi</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#e7cb94;font-family:Impact"
+       x="575.35742"
+       y="626.69617">RaspberryPi</text>
     <text
        id="text3305"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#4695c1;fill-opacity:1;font-family:Impact"
-       x="1254.7979"
-       y="617.01959">GlusterFS</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#4695c1;fill-opacity:1;font-family:Impact"
+       x="1248.6189"
+       y="613.08514">GlusterFS</text>
     <text
        id="text3309"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#d6616b;font-family:Impact"
-       x="421.24606"
-       y="541.26331">Perl</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#d6616b;font-family:Impact"
+       x="387.74164"
+       y="534.84546">Perl</text>
     <text
        id="text3311"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#7b4173;font-family:Impact"
-       x="1171.7688"
-       y="442.80307">JSON</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#7b4173;font-family:Impact"
+       x="1162.868"
+       y="433.15747">JSON</text>
     <text
        id="text3313"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#a55194;font-family:Impact"
-       x="787.70319"
-       y="731.78815">HighAvailability</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#a55194;font-family:Impact"
+       x="766.21198"
+       y="731.61609">HighAvailability</text>
     <text
        id="text3315"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#ce6dbd;font-family:Impact"
-       x="617.81885"
-       y="523.64569">Logging</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#ce6dbd;font-family:Impact"
+       x="590.75848"
+       y="516.65027">Logging</text>
     <text
        id="text3317"
-       style="font-size:46.94300079px;text-anchor:middle;fill:#7f9abb;fill-opacity:1;font-family:Impact"
-       x="1260.427"
-       y="351.69351">Monitoring</text>
+       style="font-size:48.48188782px;text-anchor:middle;fill:#7f9abb;fill-opacity:1;font-family:Impact"
+       x="1254.4326"
+       y="339.06116">Monitoring</text>
   </g>
 </svg>
