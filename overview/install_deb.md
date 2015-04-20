@@ -12,11 +12,11 @@ That's why [Treasure Data, Inc](http://www.treasuredata.com/) is providing **the
 
 NOTE: This installation guide is for td-agent v2, the current stable version. See <a href="td-agent-v1-vs-v2">this page</a> for the comparison between v1 and v2. <a href="install-by-deb-v1">Here</a> is the deb installation guide for v1.
 
-## Step 0: Before Installation
+## Before Installation
 
 Please follow the [Preinstallation Guide](before-install) to configure your OS properly. This will prevent many unnecessary problems.
 
-## Step 1 : Install from Apt Repository
+## Install from Apt Repository
 
 For Ubuntu, "Ubuntu 14.04 LTS / Trusty", "Ubuntu 12.04 LTS / Precise" and "Ubuntu 10.04 LTS / Lucid" are currently supported.
 
@@ -56,7 +56,7 @@ $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.s
 
 NOTE: It's HIGHLY recommended that you set up <b>ntpd</b> on the node to prevent invalid timestamps in your logs.
 
-## Step2: Launch Daemon
+## Launch Daemon
 
 The `/etc/init.d/td-agent` script is provided to start, stop, or restart the agent.
 
@@ -75,7 +75,7 @@ $ /etc/init.d/td-agent status
 
 Please make sure **your configuration file** is located at `/etc/td-agent/td-agent.conf`.
 
-## Step3: Post Sample Logs via HTTP
+## Post Sample Logs via HTTP
 
 By default, `/etc/td-agent/td-agent.conf` is configured to take logs from HTTP and route them to stdout (`/var/log/td-agent/td-agent.log`). You can post sample log records using the curl command.
 

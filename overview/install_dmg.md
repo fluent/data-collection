@@ -10,13 +10,13 @@ That's why [Treasure Data, Inc](http://www.treasuredata.com/) is providing **the
 
 For MacOS X, we're using the OS native .dmg Installer to distribute td-agent.
 
-## Step1: Install td-agent
+## Install td-agent
 
 Please download the `.dmg` file from [here](http://www.fluentd.org/download), and install the software.
 
 - [Download](http://www.fluentd.org/download)
 
-## Step2: Launch td-agent
+## Launch td-agent
 
 You can launch `td-agent` with `launchctl` command. Please make sure the daemon started correctly from the log (`/var/log/td-agent/td-agent.log`).
 
@@ -33,7 +33,7 @@ $ less /var/log/td-agent/td-agent.log
 $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
 ```
 
-## Step3: Post Sample Logs via HTTP
+## Post Sample Logs via HTTP
 
 By default, `/etc/td-agent/td-agent.conf` is configured to take logs from HTTP and route them to stdout (`/var/log/td-agent/td-agent.log`). You can post sample log records using the curl command.
 

@@ -17,7 +17,7 @@ The rest of this article explains how to set up Fluentd with GlusterFS. For this
 
 ##Setting up Fluentd on GlusterFS Nodes
 
-###Step 1: Installing Fluentd
+### Installing Fluentd
 
 First, we'll install Fluentd using the following command:
 
@@ -36,7 +36,7 @@ Installing ri documentation for fluent-plugin-glusterfs-1.0.0...
 Installing RDoc documentation for fluent-plugin-glusterfs-1.0.0...
 ```
 
-###Step 2: Making GlusterFS Log Files Readable by Fluentd
+### Making GlusterFS Log Files Readable by Fluentd
 
 By default, only `root` can read the GlusterFS log files. We'll allow others to read the file.
 
@@ -96,7 +96,7 @@ $ sudo service td-agent start
 Starting td-agent:                                         [  OK  ]
 ```
 
-###Step 3: Setting Up the Aggregator Fluentd Server
+### Setting Up the Aggregator Fluentd Server
 
 We'll now set up a separate Fluentd instance to aggregate the logs. Again, the first step is to install Fluentd.
 

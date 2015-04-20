@@ -2,15 +2,15 @@
 
 This article explains how to install Fluentd using Ruby gem.
 
-## Step0: Before Installation
+## Before Installation
 
 Please follow the [Preinstallation Guide](before-install) to configure your OS properly. This will prevent many unnecessary problems.
 
-## Step1: Install Ruby interpreter
+## Install Ruby interpreter
 
 Please install Ruby >= 1.9.3 on your local environment.
 
-## Step2: Install Fluentd gem
+## Install Fluentd gem
 
 Fetch and install the `fluentd` Ruby gem using the `gem` command. The official ruby gem page is [here](https://rubygems.org/gems/fluentd).
 
@@ -18,7 +18,7 @@ Fetch and install the `fluentd` Ruby gem using the `gem` command. The official r
 $ gem install fluentd --no-ri --no-rdoc
 ```
 
-## Step3: Run
+## Run
 
 Run the following commands to confirm that Fluentd was installed successfully:
 
