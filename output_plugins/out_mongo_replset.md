@@ -1,6 +1,6 @@
 # MongoDB ReplicaSet Output Plugin
 
-The `out_mongo_replset` Buffered Output plugin writes records into [MongoDB](http://mongodb.org/), the emerging document-oriented database system. 
+The `out_mongo_replset` Buffered Output plugin writes records into [MongoDB](http://mongodb.org/), the emerging document-oriented database system.
 
 NOTE: This plugin is for users using ReplicaSet. If you are not using ReplicaSet, please see the <a href="out_mongo">out_mongo</a> article instead.
 
@@ -15,8 +15,9 @@ Fluentd enables your apps to insert records to MongoDB asynchronously with batch
 
 `out_mongo_replset` is included in td-agent by default. Fluentd gem users will need to install the fluent-plugin-mongo gem using the following command.
 
-    :::term
-    $ fluent-gem install fluent-plugin-mongo
+```bash
+$ fluent-gem install fluent-plugin-mongo
+```
 
 ## Example Configuration
 
@@ -66,7 +67,7 @@ This option will allow out_mongo to use Fluentd's tag to determine the destinati
 
 For example, if you generate records with tags 'mongo.foo', the records will be inserted into the `foo` collection within the `fluentd` database.
 
-    :::text
+
     <match mongo.*>
       type mongo_replset
       database fluentd

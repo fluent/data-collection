@@ -6,7 +6,7 @@ The `in_http` Input plugin enables Fluentd to retrieve records from HTTP POST. T
 
 `in_http` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <source>
       type http
       port 8888
@@ -21,7 +21,7 @@ NOTE: Please see the <a href="config-file">Config File</a> article for the basic
 
 The example below posts a record using the `curl` command.
 
-    :::term
+    ```bash
     $ curl -X POST -d 'json={"action":"login","user":2}'
       http://localhost:8888/test.tag.here;
 
@@ -56,17 +56,17 @@ Accept records using `json=` / `msgpack=` style.
 
 Specify body format by regular expression.
 
-    :::text
+    
     format /^(?<field1>\d+):(?<field2>\w+)$/
 
 If you execute following command:
 
-    :::term
+    ```bash
     $ curl -X POST -d '123456:awesome' "http://localhost:8888/test.tag.here"
 
 then got parsed result like below:
 
-    :::text
+    
     {"field1":"123456","field2":"awesome}
 
 `ltsv`, `tsv`, `csv` and `none` are also supported.
@@ -79,7 +79,7 @@ INCLUDE: _log_level_params
 
 If you want to pass the event time from your application, please use the `time` query parameter.
 
-    :::term
+    ```bash
     $ curl -X POST -d 'json={"action":"login","user":2}'
       "http://localhost:8888/test.tag.here?time=1392021185"
 
@@ -87,7 +87,7 @@ If you want to pass the event time from your application, please use the `time` 
 
 If you use `default` format, then you can send array type of json / msgpack to in_http.
 
-    :::term
+    ```bash
     $ curl -X POST -d 'json=[{"action":"login","user":2,"time":1392021185},{"action":"logout","user":2,"time":1392027356}]'
       http://localhost:8888/test.tag.here;
 

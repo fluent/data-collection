@@ -23,7 +23,7 @@ Please refer to the following documents to install fluentd.
 
 Next, please configure Fluentd to use the [forward Input plugin](in_forward) as its data source.
 
-    :::text
+
     # Unix Domain Socket Input
     <source>
       type unix
@@ -35,32 +35,36 @@ Next, please configure Fluentd to use the [forward Input plugin](in_forward) as 
 
 Please restart your agent once these lines are in place.
 
-    :::term
-    # for rpm/deb only
-    $ sudo /etc/init.d/td-agent restart
+```bash
+# for rpm/deb only
+$ sudo /etc/init.d/td-agent restart
+```
 
 ## Using fluent-logger-php
 
 To use fluent-logger-php, copy the library into your project directory.
 
-    :::term
-    $ git clone https://github.com/fluent/fluent-logger-php.git
-    $ cp -r src/Fluent <path/to/your_project>
+```bash
+$ git clone https://github.com/fluent/fluent-logger-php.git
+$ cp -r src/Fluent <path/to/your_project>
+```
 
 Next, initialize and post the records as shown below.
 
-    :::php
-    <?php
-    require_once __DIR__.'/src/Fluent/Autoloader.php';
-    use Fluent\Logger\FluentLogger;
-    Fluent\Autoloader::register();
-    $logger = new FluentLogger("unix:///var/run/td-agent/td-agent.sock");
-    $logger->post("fluentd.test.follow", array("from"=>"userA", "to"=>"userB"));
+```php
+<?php
+require_once __DIR__.'/src/Fluent/Autoloader.php';
+use Fluent\Logger\FluentLogger;
+Fluent\Autoloader::register();
+$logger = new FluentLogger("unix:///var/run/td-agent/td-agent.sock");
+$logger->post("fluentd.test.follow", array("from"=>"userA", "to"=>"userB"));
+```
 
 Executing the script will send the logs to Fluentd.
 
-    :::term
-    $ php test.php
+```bash
+$ php test.php
+```
 
 The logs should be output to `/var/log/td-agent/td-agent.log` or stdout of the Fluentd process via the [stdout Output plugin](out_stdout).
 

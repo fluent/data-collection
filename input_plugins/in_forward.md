@@ -10,12 +10,13 @@ NOTE: Do <b>NOT</b> use this plugin for inter-DC or public internet data transfe
 
 `in_forward` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
-    <source>
-      type forward
-      port 24224
-      bind 0.0.0.0
-    </source>
+```
+<source>
+  type forward
+  port 24224
+  bind 0.0.0.0
+</source>
+```
 
 NOTE: Please see the <a href="config-file">Config File</a> article for the basic structure and syntax of the configuration file.
 
@@ -50,7 +51,6 @@ The time value is a platform specific integer and is based on the output of Ruby
 
 Multiple messages may be sent in the same connection.
 
-    :::text
     stream:
       message...
 

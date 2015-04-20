@@ -101,7 +101,7 @@ As of v10, Fluentd does NOT support Windows. However, there are times when you m
 
 If you are sending JSON logs on Windows to Fluentd, Fluentd can parse them as they come in. To do, simply change Fluentd's configuration as follows. Note the change from `format none` to `format json`. (See [this article](parser-plugin-overview) for more details about the parser plugins)
 
-    :::text
+    
     <source>
       type tcp
       format json
@@ -114,12 +114,12 @@ If you are sending JSON logs on Windows to Fluentd, Fluentd can parse them as th
 
 Then, if you add a new line to the file on your windows machine like this:
     
-    :::text
+    
     echo {"name":"Sadayuki", "age":27} >> 'C:\Users\SomeUser\Desktop\nxlog_test.log'
 
 On the Linux machine running Fluentd, you see the following line:
 
-    :::text
+    
     2014-12-20 02:22:44 +0000 windowslog: {"name":"Sadayuki","age":27}
 
 

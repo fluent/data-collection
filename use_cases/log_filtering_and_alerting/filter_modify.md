@@ -12,7 +12,7 @@ Let's suppose our Fluentd instances are collecting data from Apache web server l
 
 If our events looks like
 
-    :::text
+    
     {
         "code": 200,
         "url": "http://yourdomain.com/page.html",
@@ -23,7 +23,7 @@ If our events looks like
 
 then we can filter out all the requests with status code 200 as follows:
 
-    :::text
+    
     ...
     <match apache.**>
         type grep
@@ -34,7 +34,7 @@ then we can filter out all the requests with status code 200 as follows:
 
 By using the `add_tag_prefix` option, we can prepend a tag in front of filtered events so that they can be matched to a subsequent section. For example, we can send all logs with non-200 status codes to [Treasure Data](http://www.treasuredata.com), as shown below:
 
-    :::text
+    
     ...
     <match apache.**>
         type grep
@@ -50,7 +50,7 @@ By using the `add_tag_prefix` option, we can prepend a tag in front of filtered 
 
 `fluent-plugin-grep` can filter based on multiple fields as well. The config below keeps all requests with status code 4xx that are NOT referred from yourdomain.com (a real world use case: figuring out how many dead links there are in the wild by filtering out internal links)
 
-    :::text
+    
     ...
     <match apache.**>
         type grep
@@ -74,7 +74,7 @@ If our events looks like
 
 then we can add a new field with the hostname information as follows:
 
-    :::text
+    
     <match foo.bar>
         type record_modifier
         gen_host ${hostname}

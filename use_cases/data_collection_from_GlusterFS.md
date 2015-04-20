@@ -21,29 +21,32 @@ The rest of this article explains how to set up Fluentd with GlusterFS. For this
 
 First, we'll install Fluentd using the following command:
 
-    :::term
-    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
+```bash
+$ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
+```
 
 Next, we'll install the Fluentd plugin for GlusterFS:
 
-    :::term
-    $ sudo /usr/sbin/td-agent-gem install fluent-plugin-glusterfs
-    Fetching: fluent-plugin-glusterfs-1.0.0.gem (100%)
-    Successfully installed fluent-plugin-glusterfs-1.0.0
-    1 gem installed
-    Installing ri documentation for fluent-plugin-glusterfs-1.0.0...
-    Installing RDoc documentation for fluent-plugin-glusterfs-1.0.0...
+```bash
+$ sudo /usr/sbin/td-agent-gem install fluent-plugin-glusterfs
+Fetching: fluent-plugin-glusterfs-1.0.0.gem (100%)
+Successfully installed fluent-plugin-glusterfs-1.0.0
+1 gem installed
+Installing ri documentation for fluent-plugin-glusterfs-1.0.0...
+Installing RDoc documentation for fluent-plugin-glusterfs-1.0.0...
+```
 
 ###Step 2: Making GlusterFS Log Files Readable by Fluentd
 
 By default, only `root` can read the GlusterFS log files. We'll allow others to read the file.
 
-    :::term
-    $ ls -alF /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
-    -rw------- 1 root root 1385  Feb  3 07:21 2014 /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
-    $ sudo chmod +r /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
-    $ ls -alF /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
-    -rw-r--r-- 1 root root 1385  Feb  3 07:21 2014 /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+```bash
+$ ls -alF /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+-rw------- 1 root root 1385  Feb  3 07:21 2014 /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+$ sudo chmod +r /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+$ ls -alF /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+-rw-r--r-- 1 root root 1385  Feb  3 07:21 2014 /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+```
 
 Now, modify Fluentd's configuration file. It is located at `/etc/td-agent/td-agent.conf`.
 
@@ -51,88 +54,94 @@ NOTE: `td-agent` is Fluentd's rpm/deb package maintained by [Treasure Data](http
 
 This is what the configuration file should look like:
 
-    :::term
-    $ sudo cat /etc/td-agent/td-agent.conf
+```bash
+$ sudo cat /etc/td-agent/td-agent.conf
 
-    <source>
-      type glusterfs_log
-      path /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
-      pos_file /var/log/td-agent/etc-glusterfs-glusterd.vol.log.pos
-      tag glusterfs_log.glusterd
-      format /^(?<message>.*)$/
-    </source>
+<source>
+  type glusterfs_log
+  path /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+  pos_file /var/log/td-agent/etc-glusterfs-glusterd.vol.log.pos
+  tag glusterfs_log.glusterd
+  format /^(?<message>.*)$/
+</source>
 
-    <match glusterfs_log.**>
-      type forward
-      send_timeout 60s
-      recover_wait 10s
-      heartbeat_interval 1s
-      phi_threshold 8
-      hard_timeout 60s
+<match glusterfs_log.**>
+  type forward
+  send_timeout 60s
+  recover_wait 10s
+  heartbeat_interval 1s
+  phi_threshold 8
+  hard_timeout 60s
 
-      <server>
-        name logserver
-        host 172.31.10.100
-        port 24224
-        weight 60
-      </server>
+  <server>
+    name logserver
+    host 172.31.10.100
+    port 24224
+    weight 60
+  </server>
 
-      <secondary>
-        type file
-        path /var/log/td-agent/forward-failed
-      </secondary>
-    </match>
+  <secondary>
+    type file
+    path /var/log/td-agent/forward-failed
+  </secondary>
+</match>
+```
 
 NOTE: the <secondary>...</secondary> section is for failover (when the aggregator instance at 172.31.10.100:24224 is unreachable).
 
 Finally, start td-agent. Fluentd will started with the updated setup.
 
-    $ sudo service td-agent start
-    Starting td-agent:                                         [  OK  ]
+```bash
+$ sudo service td-agent start
+Starting td-agent:                                         [  OK  ]
+```
 
 ###Step 3: Setting Up the Aggregator Fluentd Server
 
 We'll now set up a separate Fluentd instance to aggregate the logs. Again, the first step is to install Fluentd.
 
-    :::term
-    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
+```bash
+$ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
+```
 
 We'll set up the node to send data to Elasticsearch, where the logs will be indexed and written to local disk for backup.
 
 First, install the Elasticsearch output plugin as follows:
 
-    :::term
-    $ sudo /usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-glusterfs
+```bash
+$ sudo /usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-glusterfs
+```
 
 Then, configure Fluentd as follows:
 
-    :::term
-    $ sudo cat /etc/td-agent/td-agent.conf
-    <source>
-      type forward
-      port 24224
-      bind 0.0.0.0
-    </source>
+```bash
+$ sudo cat /etc/td-agent/td-agent.conf
+<source>
+  type forward
+  port 24224
+  bind 0.0.0.0
+</source>
 
-    <match glusterfs_log.glusterd>
-      type copy
+<match glusterfs_log.glusterd>
+  type copy
 
-      #local backup
-      <store>
-        type file
-        path /var/log/td-agent/glusterd
-      </store>
+  #local backup
+  <store>
+    type file
+    path /var/log/td-agent/glusterd
+  </store>
 
-      #Elasticsearch
-      <store>
-        type elasticsearch
-        host ELASTICSEARCH_URL_HERE
-        port 9200
-        index_name glusterfs
-        type_name fluentd
-        logstash_format true
-      </store>
-    </match>
+  #Elasticsearch
+  <store>
+    type elasticsearch
+    host ELASTICSEARCH_URL_HERE
+    port 9200
+    index_name glusterfs
+    type_name fluentd
+    logstash_format true
+  </store>
+</match>
+```
 
 That's it! You should now be able to search and visualize your GlusterFS logs with [Kibana](http://www.elasticsearch.org/overview/kibana).
 

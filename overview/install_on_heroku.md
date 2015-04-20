@@ -36,7 +36,7 @@ Since [Treasure Data](http://www.treasuredata.com), the primary sponsor of Fluen
 
 If
 
-    :::text
+    
               http                          
     Your App ------> Heroku-hosted Fluentd ------> Treasure Data
 

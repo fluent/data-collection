@@ -28,11 +28,12 @@ In this guide, we will go over installation, setup, and basic use of this combin
 
 Please confirm that your Java version is 6 or higher.
 
-    :::term
-    $ java -version
-    java version "1.6.0_45"
-    Java(TM) SE Runtime Environment (build 1.6.0_45-b06-451-11M4406)
-    Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01-451, mixed mode)
+```bash
+$ java -version
+java version "1.6.0_45"
+Java(TM) SE Runtime Environment (build 1.6.0_45-b06-451-11M4406)
+Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01-451, mixed mode)
+```
 
 Now that we've checked for prerequisites, we're now ready to install and set up the three open source tools.
 
@@ -40,29 +41,33 @@ Now that we've checked for prerequisites, we're now ready to install and set up 
 
 To install Elasticsearch, please download and extract the Elasticsearch package as shown below.
 
-    :::term
-    $ curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.0.RC2.tar.gz
-    $ tar zxvf elasticsearch-0.90.0.RC2.tar.gz
-    $ cd elasticsearch-0.90.0.RC2/
+```bash
+$ curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.0.RC2.tar.gz
+$ tar zxvf elasticsearch-0.90.0.RC2.tar.gz
+$ cd elasticsearch-0.90.0.RC2/
+```
 
 Once installation is complete, start Elasticsearch.
 
-    :::term
-    $ ./bin/elasticsearch -f
+```bash
+$ ./bin/elasticsearch -f
+```
 
 ## Set Up Kibana
 
 To install Kibana, download it via the official webpage and extract it. Kibana is a HTML / CSS / JavaScript application.
 
-    :::term
-    $ curl -O https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0milestone5.tar.gz
-    $ tar zxvf kibana-3.0.0milestone5.tar.gz
-    $ cd kibana-3.0.0milestone5/
+```bash
+$ curl -O https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0milestone5.tar.gz
+$ tar zxvf kibana-3.0.0milestone5.tar.gz
+$ cd kibana-3.0.0milestone5/
+```
 
 Once installation is complete, start Kibana and open `index.html`. You can modify Kibana's configuration via `config.js`.
 
-    :::term
-    $ open index.html
+```bash
+$ open index.html
+```
 
 ## Set Up Fluentd (td-agent)
 
@@ -83,7 +88,7 @@ Then, install fluent-plugin-elasticsearch as follows.
 
 We'll configure td-agent (Fluentd) to interface properly with Elasticsearch. Please modify `/etc/td-agent/td-agent.conf` as shown below:
 
-    :::text
+
     <source>
       type syslog
       port 42185
@@ -104,20 +109,23 @@ fluent-plugin-elasticsearch comes with a logstash_format option that allows Kiba
 
 Once everything has been set up and configured, we'll start td-agent.
 
-    :::term
-    $ sudo /etc/init.d/td-agent start
+```bash
+$ sudo /etc/init.d/td-agent start
+```
 
 ## Set Up rsyslogd
 
 In our final step, we'll forward the logs from your rsyslogd to Fluentd. Please add the following line to your `/etc/rsyslog.conf`, and restart rsyslog. This will forward your local syslog to Fluentd, and Fluentd in turn will forward the logs to Elasticsearch.
 
-    :::text
+
     *.* @127.0.0.1:42185
 
 Please restart the rsyslog service once the modification is complete.
 
-    :::text
-    $ sudo /etc/init.d/rsyslog restart
+
+```bash
+$ sudo /etc/init.d/rsyslog restart
+```
 
 ## Store and Search Event Logs
 
@@ -127,12 +135,14 @@ Once Fluentd receives some event logs from rsyslog and has flushed them to Elast
 
 To manually send logs to Elasticsearch, please use the `logger` command.
 
-    :::text
-    $ logger -t test foobar
+
+```bash
+$ logger -t test foobar
+```
 
 When debugging your td-agent configuration, using [out_copy](out_copy) + [out_stdout](out_stdout) will be useful. All the logs including errors can be found at `/etc/td-agent/td-agent.log`.
 
-    :::text
+
     <match syslog.**>
       type copy
       <store>

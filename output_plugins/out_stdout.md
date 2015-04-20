@@ -6,7 +6,7 @@ The `stdout` output plugin prints events to stdout (or logs if launched with dae
 
 `out_stdout` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <match pattern>
       type stdout
     </match>

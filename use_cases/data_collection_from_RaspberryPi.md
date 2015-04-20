@@ -25,14 +25,16 @@ This article introduces how to transport sensor data from Raspberry Pi to the cl
 
 Next, we'll install Fluentd on Raspbian. Raspbian bundles Ruby 1.9.3 by default, but we need the extra development package to install Fluentd.
 
-    :::term
-    $ sudo aptitude install ruby-dev
+```bash
+$ sudo aptitude install ruby-dev
+```
 
 We'll now install Fluentd and the necessary plugins.
 
-    :::term
-    $ sudo gem install fluentd
-    $ sudo fluent-gem install fluent-plugin-td
+```bash
+$ sudo gem install fluentd
+$ sudo fluent-gem install fluent-plugin-td
+```
 
 ## Configure and Launch Fluentd
 
@@ -40,7 +42,7 @@ Please sign up to Treasure Data from the [sign up page](https://console.treasure
 
 Please prepare the `fluentd.conf` file with the following information, including your API key.
 
-    :::text
+
     <match td.*.*>
       type tdlog
       apikey YOUR_API_KEY_HERE
@@ -59,16 +61,18 @@ Please prepare the `fluentd.conf` file with the following information, including
 
 Finally, please launch Fluentd via your terminal.
 
-    :::term
-    $ fluentd -c fluent.conf
+```bash
+$ fluentd -c fluent.conf
+```
 
 ## Upload Test
 
 To test the configuration, just post a JSON message to Fluentd via HTTP.
 
-    :::term
-    $ curl -X POST -d 'json={"sensor1":3123.13,"sensor2":321.3}' \
-      http://localhost:8888/td.testdb.raspberrypi
+```bash
+$ curl -X POST -d 'json={"sensor1":3123.13,"sensor2":321.3}' \
+  http://localhost:8888/td.testdb.raspberrypi
+```
 
 NOTE: If you're using Python, you can use Fluentd's <a href="python">python logger</a> library.
 
@@ -82,10 +86,10 @@ You can now issue queries against the imported data.
 
 For example, these queries calculate the average sensor1 value and the sum of sensor2 values.
 
-    :::sql
-    SELECT AVG(sensor1) FROM raspberrypi;
-    SELECT SUM(sensor2) FROM raspberrypi;
-
+```sql
+SELECT AVG(sensor1) FROM raspberrypi;
+SELECT SUM(sensor2) FROM raspberrypi;
+```
 
 ## Conclusion
 

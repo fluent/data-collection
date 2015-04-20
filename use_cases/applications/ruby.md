@@ -23,7 +23,7 @@ Please refer to the following documents to install fluentd.
 
 Next, please configure Fluentd to use the [forward Input plugin](in_forward) as its data source.
 
-    :::text
+
     <source>
       type forward
       port 24224
@@ -34,28 +34,32 @@ Next, please configure Fluentd to use the [forward Input plugin](in_forward) as 
 
 Please restart your agent once these lines are in place.
 
-    :::term
-    # for rpm/deb only
-    $ sudo /etc/init.d/td-agent restart
+```bash
+# for rpm/deb only
+$ sudo /etc/init.d/td-agent restart
+```
 
 ## Using fluent-logger-ruby
 
 First, add the ‘fluent-logger’ gem to your Gemfile.
 
-    :::ruby
-    gem 'fluent-logger', "~> 0.4.3"
+```ruby
+gem 'fluent-logger', "~> 0.4.3"
+```
 
 Next, please initialize and post the records as shown below.
 
-    :::ruby
-    require 'fluent-logger'
-    Fluent::Logger::FluentLogger.open(nil, :host=>'localhost', :port=>24224)
-    Fluent::Logger.post("fluentd.test.follow", {"from"=>"userA", "to"=>"userB"})
+```ruby
+require 'fluent-logger'
+Fluent::Logger::FluentLogger.open(nil, :host=>'localhost', :port=>24224)
+Fluent::Logger.post("fluentd.test.follow", {"from"=>"userA", "to"=>"userB"})
+```
 
 Executing the script will send the logs to Fluentd.
 
-    :::term
-    $ ruby test.rb
+```bash
+$ ruby test.rb
+```
 
 The logs should be output to `/var/log/td-agent/td-agent.log` or stdout of the Fluentd process via the [stdout Output plugin](out_stdout).
 

@@ -6,7 +6,7 @@ The `out_exec_filter` Buffered Output plugin (1) executes an external program us
 
 `out_exec_filter` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <match pattern>
       type exec_filter
       command cmd arg arg
@@ -36,7 +36,7 @@ The following formats are supported:
 
 When using the tsv format, please also specify the comma-separated `in_keys` parameter.
 
-    :::text
+    
     in_keys k1,k2,k3
 
 * json
@@ -51,7 +51,7 @@ The following formats are supported:
 
 When using the tsv format, please also specify the comma-separated `out_keys` parameter.
 
-    :::text
+    
     out_keys k1,k2,k3,k4
 
 * json

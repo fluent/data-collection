@@ -33,29 +33,29 @@ Extend the **Fluent::Input** class and implement the following methods.
         # First, register the plugin. NAME is the name of this plugin
         # and identifies the plugin in the configuration file.
         Fluent::Plugin.register_input('NAME', self)
-  
+
         # config_param defines a parameter. You can refer a parameter via @port instance variable
         # :default means this parameter is optional
         config_param :port, :integer, :default => 8888
-  
+
         # This method is called before starting.
         # 'conf' is a Hash that includes configuration parameters.
         # If the configuration is invalid, raise Fluent::ConfigError.
         def configure(conf)
           super
-  
+
           # You can also refer to raw parameter via conf[name].
           @port = conf['port']
           ...
         end
-  
+
         # This method is called when starting.
         # Open sockets or files and create a thread here.
         def start
           super
           ...
         end
-  
+
         # This method is called when shutting down.
         # Shutdown the thread and close sockets or files here.
         def shutdown
@@ -91,36 +91,36 @@ Extend the **Fluent::BufferedOutput** class and implement the following methods.
         # First, register the plugin. NAME is the name of this plugin
         # and identifies the plugin in the configuration file.
         Fluent::Plugin.register_output('NAME', self)
-  
+
         # config_param defines a parameter. You can refer a parameter via @path instance variable
         # Without :default, a parameter is required.
         config_param :path, :string
-  
+
         # This method is called before starting.
         # 'conf' is a Hash that includes configuration parameters.
         # If the configuration is invalid, raise Fluent::ConfigError.
         def configure(conf)
           super
-  
+
           # You can also refer raw parameter via conf[name].
           @path = conf['path']
           ...
         end
-  
+
         # This method is called when starting.
         # Open sockets or files here.
         def start
           super
           ...
         end
-  
+
         # This method is called when shutting down.
         # Shutdown the thread and close sockets or files here.
         def shutdown
           super
           ...
         end
-  
+
         # This method is called when an event reaches to Fluentd.
         # Convert the event to a raw string.
         def format(tag, time, record)
@@ -128,7 +128,7 @@ Extend the **Fluent::BufferedOutput** class and implement the following methods.
           ## Alternatively, use msgpack to serialize the object.
           # [tag, time, record].to_msgpack
         end
-  
+
         # This method is called every flush interval. Write the buffer chunk
         # to files or databases here.
         # 'chunk' is a buffer chunk that includes multiple formatted
@@ -140,7 +140,7 @@ Extend the **Fluent::BufferedOutput** class and implement the following methods.
           data = chunk.read
           print data
         end
-  
+
         ## Optionally, you can use chunk.msgpack_each to deserialize objects.
         #def write(chunk)
         #  chunk.msgpack_each {|(tag,time,record)|
@@ -164,7 +164,7 @@ To implement a Time Sliced Output plugin, extend the **Fluent::TimeSlicedOutput*
         # configure(conf), start(), shutdown() and format(tag, time, record) are
         # the same as BufferedOutput.
         ...
-  
+
         # You can use 'chunk.key' to get sliced time. The format of 'chunk.key'
         # can be configured by the 'time_format' option. The default format is %Y%m%d.
         def write(chunk)
@@ -184,25 +184,25 @@ Extend the **Fluent::Output** class and implement the following methods. **Outpu
         # First, register the plugin. NAME is the name of this plugin
         # and identifies the plugin in the configuration file.
         Fluent::Plugin.register_output('NAME', self)
-  
+
         # This method is called before starting.
         def configure(conf)
           super
           ...
         end
-      
+
         # This method is called when starting.
         def start
           super
           ...
         end
-      
+
         # This method is called when shutting down.
         def shutdown
           super
           ...
         end
-      
+
         # This method is called when an event reaches Fluentd.
         # 'es' is a Fluent::EventStream object that includes multiple events.
         # You can use 'es.each {|time,record| ... }' to retrieve events.
@@ -228,7 +228,7 @@ Here is the implementation of the most basic filter that passes through all even
     :::ruby
     module Fluent
       class PassThruFilter < Filter
-    
+
         # config_param works like other plugins
 
         def configure(conf)
@@ -267,12 +267,12 @@ Fluentd supports [pluggable, customizable formats for input plugins](parser-plug
 
 Here is an example of a custom parser that parses the following newline-delimited log format:
 
-    :::text
+
     <timestamp><SPACE>key1=value1<DELIMITER>key2=value2<DELIMITER>key3=value...
 
 e.g., something like this
 
-    :::text
+
     2014-04-01T00:00:00 name=jake age=100 action=debugging
 
 While it is not hard to write a regular expression to match this format, it is tricky to extract and save key names.
@@ -298,7 +298,7 @@ Here is the code to parse this custom format (let's call it `time_key_value`). I
             # to parse the time string with.
             @time_parser = TimeParser.new(@time_format)
           end
-          
+
           # This is the main method. The input "text" is the unit of data to be parsed.
           # If this is the in_tail plugin, it would be a line. If this is for in_syslog,
           # it is a single syslog message.
@@ -318,7 +318,7 @@ Here is the code to parse this custom format (let's call it `time_key_value`). I
 
 Then, save this code in `parser_time_key_value.rb` in a loadable plugin path. Then, if in_tail is configured as
 
-    :::text
+
     # Other lines...
     <source>
       type tail
@@ -341,20 +341,20 @@ Here is an example of a custom formatter that outputs events as CSVs. It takes a
           # Register MyCSVFormatter as "my_csv".
           Plugin.register_formatter("my_csv", self)
 
-          include HandleTagAndTimeMixin # If you wish to use tag_key, time_key, etc.          
+          include HandleTagAndTimeMixin # If you wish to use tag_key, time_key, etc.
           config_param :csv_fields, :string
-          
+
           # This method does further processing. Configuration parameters can be
           # accessed either via "conf" hash or member variables.
           def configure(conf)
             super
             @csv_fields = conf['csv_fields'].split(",")
           end
-          
+
           # This is the method that formats the data output.
           def format(tag, time, record)
             values = []
-            
+
             # Look up each required field and collect them from the record
             @csv_fields.each do |field|
               v = record[field]
@@ -363,17 +363,17 @@ Here is an example of a custom formatter that outputs events as CSVs. It takes a
               end
               values << v
             end
-            
+
             # Output by joining the fields with a comma
             values.join(",")
           end
-        end        
+        end
       end
     end
 
 Then, save this code in `formatter_my_csv.rb` in a loadable plugin path. Then, if out_file is configured as
 
-    :::text
+
     # Other lines...
     <match test>
       type file
@@ -393,12 +393,12 @@ Run ``fluentd`` with the ``-vv`` option to show debug messages:
 
 The **stdout** and **copy** output plugins are useful for debugging. The **stdout** output plugin dumps matched events to the console. It can be used as follows:
 
-    :::text
+
     # You want to debug this plugin.
     <source>
       type your_custom_input_plugin
     </source>
-    
+
     # Dump all events to stdout.
     <match **>
       type stdout
@@ -406,7 +406,7 @@ The **stdout** and **copy** output plugins are useful for debugging. The **stdou
 
 The **copy** output plugin copies matched events to multiple output plugins. You can use it in conjunction with the stdout plugin:
 
-    :::text
+
     <source>
       type tcp
     </source>
@@ -431,13 +431,13 @@ The **copy** output plugin copies matched events to multiple output plugins. You
 
 Fluentd provides unit test frameworks for plugins:
 
-    :::text
+
     Fluent::Test::InputTestDriver
       Test driver for input plugins.
-    
+
     Fluent::Test::BufferedOutputTestDriver
       Test driver for buffered output plugins.
-    
+
     Fluent::Test::OutputTestDriver
       Test driver for non-buffered output plugins.
 

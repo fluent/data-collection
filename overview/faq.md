@@ -71,7 +71,7 @@ You can use the `copy` [output plugin](/articles/out_copy) to send the same even
 
 Use `"#{ENV['YOUR_ENV_VARIABLE']}"`. For example,
 
-    :::text
+    
     some_field "#{ENV['FOO_HOME']}"
 
 (Note that it must be double quotes and not single quotes)

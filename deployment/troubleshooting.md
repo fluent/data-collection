@@ -34,5 +34,5 @@ You can get more information about the logs if verbose logging is turned on. Ple
 
 Please add `-vv` to your command line.
 
-    :::text
+    
     $ fluentd .. -vv

@@ -4,7 +4,7 @@ The `memory` buffer plugin provides a fast buffer implementation. It uses memory
 
 ### Example Config
 
-    :::text
+    
     <match pattern>
       buffer_type memory
     </match>

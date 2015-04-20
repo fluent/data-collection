@@ -8,8 +8,9 @@ NOTE: This document doesn't describe all parameters. If you want to know full fe
 
 `out_webhdfs` is included in td-agent by default (v1.1.10 or later). Fluentd gem users will have to install the fluent-plugin-webhdfs gem using the following command.
 
-    :::term
-    $ fluent-gem install fluent-plugin-webhdfs
+```bash
+$ fluent-gem install fluent-plugin-webhdfs
+```
 
 ## HDFS Configuration
 
@@ -19,12 +20,12 @@ Append operations are not enabled by default on CDH. Please put these configurat
       <name>dfs.webhdfs.enabled</name>
       <value>true</value>
     </property>
-    
+
     <property>
       <name>dfs.support.append</name>
       <value>true</value>
     </property>
-    
+
     <property>
       <name>dfs.support.broken.append</name>
       <value>true</value>
@@ -32,7 +33,7 @@ Append operations are not enabled by default on CDH. Please put these configurat
 
 ## Example Configuration
 
-    :::text
+
     <match access.**>
       type webhdfs
       host namenode.your.cluster.local

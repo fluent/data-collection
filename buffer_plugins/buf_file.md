@@ -4,7 +4,7 @@ The `file` buffer plugin provides a persistent buffer implementation. It uses fi
 
 ### Example Config
 
-    :::text
+    
     <match pattern>
       buffer_type file
       buffer_path /var/log/fluent/myapp.*.buffer

@@ -6,7 +6,7 @@ This article explains how to monitor the `Fluentd` daemon.
 
 Fluentd has a monitoring agent to retrieve internal metrics in JSON via HTTP. Please add the following lines to your configuration file.
 
-    :::text
+    
     <source>
       type monitor_agent
       bind 0.0.0.0
@@ -47,7 +47,7 @@ Fluentd opens several ports according to the configuration file. We recommend ch
 
 A debug port for local communication is recommended for trouble shooting. Please note that the configuration below will be required.
 
-    :::text
+    
     <source>
       type debug_agent
       bind 127.0.0.1

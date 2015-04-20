@@ -18,16 +18,18 @@ The configuration file allows the user to control the input and output behavior 
 
 If you installed Fluentd using the td-agent packages, the config file is located at /etc/td-agent/td-agent.conf. `sudo /etc/init.d/td-agent reload` will reload the config file.
 
-    :::term
-    $ sudo vi /etc/td-agent/td-agent.conf
+```bash
+$ sudo vi /etc/td-agent/td-agent.conf
+```
 
 #### Gem
 
 If you installed Fluentd using the Ruby Gem, you can create the configuration file using the following commands. Sending a SIGHUP signal will reload the config file.
 
-    :::term
-    $ sudo fluentd --setup /etc/fluent
-    $ sudo vi /etc/fluent/fluent.conf
+```bash
+$ sudo fluentd --setup /etc/fluent
+$ sudo vi /etc/fluent/fluent.conf
+```
 
 ## List of Directives
 
@@ -247,16 +249,16 @@ NOTE: Each parameter's type should be documented. If not, please let the plugin 
 - `integer` type: the field is parsed as an integer.
 - `float` type: the field is parsed as a float.
 - `size` type: the field is parsed as the number of bytes. There are several notational variations:
-    * If the value matches `<INTEGER>k` or `<INTEGER>K`, then the value is the INTEGER number of kilobytes. 
-    * If the value matches `<INTEGER>m` or `<INTEGER>M`, then the value is the INTEGER number of megabytes. 
-    * If the value matches `<INTEGER>g` or `<INTEGER>G`, then the value is the INTEGER number of gigabytes. 
-    * If the value matches `<INTEGER>t` or `<INTEGER>T`, then the value is the INTEGER number of terabytes. 
+    * If the value matches `<INTEGER>k` or `<INTEGER>K`, then the value is the INTEGER number of kilobytes.
+    * If the value matches `<INTEGER>m` or `<INTEGER>M`, then the value is the INTEGER number of megabytes.
+    * If the value matches `<INTEGER>g` or `<INTEGER>G`, then the value is the INTEGER number of gigabytes.
+    * If the value matches `<INTEGER>t` or `<INTEGER>T`, then the value is the INTEGER number of terabytes.
     * Otherwise, the field is parsed as integer, and that integer is the number of bytes.
 - `time` type: the field is parsed as a time duration.
     * If the value matches `<INTEGER>s`, then the value is the INTEGER seconds.
-    * If the value matches `<INTEGER>m`, then the value is the INTEGER minutes. 
-    * If the value matches `<INTEGER>h`, then the value is the INTEGER hours. 
-    * If the value matches `<INTEGER>d`, then the value is the INTEGER days. 
+    * If the value matches `<INTEGER>m`, then the value is the INTEGER minutes.
+    * If the value matches `<INTEGER>h`, then the value is the INTEGER hours.
+    * If the value matches `<INTEGER>d`, then the value is the INTEGER days.
     * Otherwise, the field is parsed as float, and that float is the number of seconds. This option is useful for specifying sub-second time durations such as "0.1" (=0.1 second = 100ms).
 - `array` type: the field is parsed as a JSON array
 - `hash` type: the field is parsed as a JSON object
@@ -332,4 +334,3 @@ NOTE: config-xxx mixins use "${}", not "#{}". These embedded configurations are 
 You need `\` for setting `"`, `\r`, `\n`, `\t`, `\` or several characters in double-quoted string literal.
 
     str_param "foo\nbar" # \n is interpreted as actual LF character
-

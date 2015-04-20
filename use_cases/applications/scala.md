@@ -24,7 +24,7 @@ Please refer to the following documents to install fluentd.
 
 Next, please configure Fluentd to use the [forward Input plugin](in_forward) as its data source.
 
-    :::text
+
     <source>
       type forward
       port 24224
@@ -35,51 +35,50 @@ Next, please configure Fluentd to use the [forward Input plugin](in_forward) as 
 
 Please restart your agent once these lines are in place.
 
-    :::term
-    # for rpm/deb only
-    $ sudo /etc/init.d/td-agent restart
+```bash
+# for rpm/deb only
+$ sudo /etc/init.d/td-agent restart
+```
 
 ## Using fluent-logger-scala
 
 First, please add the following lines to build.sbt. The logger's revision information can be found in the [ChangeLog](https://github.com/oza/fluent-logger-scala/blob/master/ChangeLog).
 
     resolvers += "Apache Maven Central Repository" at "http://repo.maven.apache.org/maven2/"
-
     libraryDependencies += "org.fluentd" %% "fluent-logger-scala" % "0.3.0"
 
 or
 
     resolvers += "Sonatype Repository" at "http://oss.sonatype.org/content/repositories/releases"
-
     libraryDependencies += "org.fluentd" %% "fluent-logger-scala" % "0.3.0"
 
 
 Next, please insert the following lines into your application. Further information regarding the API can be found [here](https://github.com/oza/fluent-logger-scala).
 
-    :::Scala
-    import org.fluentd.logger.scala.FluentLoggerFactory
-    import scala.collection.mutable.HashMap
-    
-    object Sample {
-      val LOG = FluentLoggerFactory.getLogger("fluentd.test")
-    
-      def main(args: Array[String]): Unit = {
-        
-        ...
-        val data = new HashMap[String, String]();
-        data.put("from", "userA");
-        data.put("to", "userB");
-        LOG.log("follow", data);
-        ...
-      }
-    
-    }
+```scala
+import org.fluentd.logger.scala.FluentLoggerFactory
+import scala.collection.mutable.HashMap
+
+object Sample {
+  val LOG = FluentLoggerFactory.getLogger("fluentd.test")
+
+  def main(args: Array[String]): Unit = {
+    ...
+    val data = new HashMap[String, String]();
+    data.put("from", "userA");
+    data.put("to", "userB");
+    LOG.log("follow", data);
+    ...
+  }
+}
+```
 
 Executing the script will send the logs to Fluentd.
 
-    :::term
-    $ sbt
-    > run
+```bash
+$ sbt
+> run
+```
 
 The logs should be output to `/var/log/td-agent/td-agent.log` or stdout of the Fluentd process via the [stdout Output plugin](out_stdout).
 

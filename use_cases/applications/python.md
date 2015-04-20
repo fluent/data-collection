@@ -23,7 +23,7 @@ Please refer to the following documents to install fluentd.
 
 Next, please configure Fluentd to use the [forward Input plugin](in_forward) as its data source.
 
-    :::text
+
     <source>
       type forward
       port 24224
@@ -34,39 +34,44 @@ Next, please configure Fluentd to use the [forward Input plugin](in_forward) as 
 
 Please restart your agent once these lines are in place.
 
-    :::term
-    # for rpm/deb only
-    $ sudo /etc/init.d/td-agent restart
+```bash
+# for rpm/deb only
+$ sudo /etc/init.d/td-agent restart
+```
 
 ## Using fluent-logger-python
 
 First, install the fluent-logger library via pip.
 
-    :::term
-    $ pip install fluent-logger
+```bash
+$ pip install fluent-logger
+```
 
 Next, initialize and post the records as shown below.
 
-    :::python
-    # test.py
-    from fluent import sender
-    from fluent import event
-    sender.setup('fluentd.test', host='localhost', port=24224)
-    event.Event('follow', {
-      'from': 'userA',
-      'to':   'userB'
-    })
+```python
+# test.py
+from fluent import sender
+from fluent import event
+sender.setup('fluentd.test', host='localhost', port=24224)
+event.Event('follow', {
+  'from': 'userA',
+  'to':   'userB'
+  })
+```
 
 Executing the script will send the logs to Fluentd.
 
-    :::term
-    $ python test.py
+```bash
+$ python test.py
+```
 
 The logs should be output to `/var/log/td-agent/td-agent.log` or stdout of the Fluentd process via the [stdout Output plugin](out_stdout).
 
 ## Production Deployments
 
 ### Output Plugins
+
 Various [output plugins](output-plugin-overview) are available for writing records to other destinations:
 
 * Examples
@@ -81,11 +86,13 @@ Various [output plugins](output-plugin-overview) are available for writing recor
   * [etc...](http://fluentd.org/plugin/)
 
 ### High-Availablability Configurations of Fluentd
+
 For high-traffic websites (more than 5 application nodes), we recommend using a high availability configuration of td-agent. This will improve data transfer reliability and query performance.
 
 * [High-Availability Configurations of Fluentd](high-availability)
 
 ### Monitoring
+
 Monitoring Fluentd itself is also important. The article below describes general monitoring methods for td-agent.
 
 * [Monitoring Fluentd](monitoring)

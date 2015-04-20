@@ -12,7 +12,7 @@ By default, Fluentd only uses a single CPU core on the system. The `in_multiproc
 
 ### Example Configuration
 
-    :::text
+    
     <source>
       type multiprocess
 

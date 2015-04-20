@@ -6,7 +6,7 @@ The `copy` output plugin copies events to multiple outputs.
 
 `out_copy` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <match pattern>
       type copy
       <store>
@@ -26,7 +26,7 @@ NOTE: Please see the <a href="config-file">Config File</a> article for the basic
 
 Here is an example set up to send events to both a local file under `/var/log/fluent/myapp` and the collection `fluentd.test` in a local MongoDB instance (Please see the [out_file](/articles/out_file) and [out_mongo](/articles/out_mongo) articles for more details about the respective plugins.)
 
-    :::text
+    
     <match myevent.file_and_mongo>
       type copy
       <store>

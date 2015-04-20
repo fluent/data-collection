@@ -6,7 +6,7 @@ The `in_udp` Input plugin enables Fluentd to accept UDP payload.
 
 `in_udp` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <source>
       type udp
       format /^(?<field1>\d+):(?<field2>\w+)$/ # required
@@ -44,12 +44,12 @@ The field name of the client's hostname. If set the value, the client's hostname
 
 If you set following configuration:
 
-    :::text
+    
     source_host_key client_host
 
 then the client's hostname is set to `client_host` field.
 
-    :::text
+    
     {
         ...
         "foo": "bar",

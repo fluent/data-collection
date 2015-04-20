@@ -23,7 +23,7 @@ Please refer to the following documents to install fluentd.
 
 Next, please configure Fluentd to use the [forward Input plugin](in_forward) as its data source.
 
-    :::text
+
     <source>
       type forward
       port 24224
@@ -34,49 +34,53 @@ Next, please configure Fluentd to use the [forward Input plugin](in_forward) as 
 
 Please restart your agent once these lines are in place.
 
-    :::term
-    # for rpm/deb only
-    $ sudo /etc/init.d/td-agent restart
+```bash
+# for rpm/deb only
+$ sudo /etc/init.d/td-agent restart
+```
 
 ## Using fluent-logger-java
 
 First, please add the following lines to pom.xml. The logger's revision information can be found in [CHANGES.txt](https://github.com/fluent/fluent-logger-java/blob/master/CHANGES.txt).
 
-    :::xml
-    <dependencies>
-      ...
-      <dependency>
-        <groupId>org.fluentd</groupId>
-        <artifactId>fluent-logger</artifactId>
-        <version>${logger.version}</version>
-      </dependency>
-      ...
-    </dependencies>
-    
+```xml
+<dependencies>
+  ...
+  <dependency>
+    <groupId>org.fluentd</groupId>
+    <artifactId>fluent-logger</artifactId>
+    <version>${logger.version}</version>
+  </dependency>
+  ...
+</dependencies>
+```
+
 Next, please insert the following lines into your application. Further information regarding the API can be found [here](https://github.com/fluent/fluent-logger-java).
 
-    :::java
-    import java.util.HashMap;
-    import java.util.Map;
-    import org.fluentd.logger.FluentLogger;
-    
-    public class Main {
-        private static FluentLogger LOG = FluentLogger.getLogger("fluentd.test");
-    
-        public void doApplicationLogic() {
-            // ...
-            Map<String, String> data = new HashMap<String, String>();
-            data.put("from", "userA");
-            data.put("to", "userB");
-            LOG.log("follow", data);
-            // ...
-        }
+```java
+import java.util.HashMap;
+import java.util.Map;
+import org.fluentd.logger.FluentLogger;
+
+public class Main {
+    private static FluentLogger LOG = FluentLogger.getLogger("fluentd.test");
+
+    public void doApplicationLogic() {
+        // ...
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("from", "userA");
+        data.put("to", "userB");
+        LOG.log("follow", data);
+        // ...
     }
+}
+```
 
 Executing the script will send the logs to Fluentd.
 
-    :::term
-    $ java -jar test.jar
+```bash
+$ java -jar test.jar
+```
 
 The logs should be output to `/var/log/td-agent/td-agent.log` or stdout of the Fluentd process via the [stdout Output plugin](out_stdout).
 

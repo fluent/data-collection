@@ -50,7 +50,7 @@ Let’s start configuring Fluentd. If you used the deb/rpm package, Fluentd's co
 
 For the input source, we will set up Fluentd to track the recent Apache logs (typically found at /var/log/apache2/access_log) The Fluentd configuration file should look like this:
 
-    :::text
+
     <source>
       type tail
       format apache2
@@ -74,7 +74,7 @@ That’s it! You should now be able to output a JSON-formatted data stream for F
 
 The output destination will be MongoDB. The output configuration should look like this:
 
-    :::text
+
     <match mongo.*.*>
       # plugin type
       type mongo
@@ -106,18 +106,20 @@ NOTE: For additional configuration parameters, please see the <a href="out_mongo
 
 To test the configuration, just ping the Apache server. This example uses the `ab` (Apache Bench) program.
 
-    :::term
-    $ ab -n 100 -c 10 http://localhost/
+```bash
+$ ab -n 100 -c 10 http://localhost/
+```
 
 Then, access MongoDB and see the stored data.
 
-    :::term
-    $ mongo
-    > use apache
-    > db["access"].findOne();
-    { "_id" : ObjectId("4ed1ed3a340765ce73000001"), "host" : "127.0.0.1", "user" : "-", "method" : "GET", "path" : "/", "code" : "200", "size" : "44", "time" : ISODate("2011-11-27T07:56:27Z") }
-    { "_id" : ObjectId("4ed1ed3a340765ce73000002"), "host" : "127.0.0.1", "user" : "-", "method" : "GET", "path" : "/", "code" : "200", "size" : "44", "time" : ISODate("2011-11-27T07:56:34Z") }
-    { "_id" : ObjectId("4ed1ed3a340765ce73000003"), "host" : "127.0.0.1", "user" : "-", "method" : "GET", "path" : "/", "code" : "200", "size" : "44", "time" : ISODate("2011-11-27T07:56:34Z") }
+```bash
+$ mongo
+> use apache
+> db["access"].findOne();
+{ "_id" : ObjectId("4ed1ed3a340765ce73000001"), "host" : "127.0.0.1", "user" : "-", "method" : "GET", "path" : "/", "code" : "200", "size" : "44", "time" : ISODate("2011-11-27T07:56:27Z") }
+{ "_id" : ObjectId("4ed1ed3a340765ce73000002"), "host" : "127.0.0.1", "user" : "-", "method" : "GET", "path" : "/", "code" : "200", "size" : "44", "time" : ISODate("2011-11-27T07:56:34Z") }
+{ "_id" : ObjectId("4ed1ed3a340765ce73000003"), "host" : "127.0.0.1", "user" : "-", "method" : "GET", "path" : "/", "code" : "200", "size" : "44", "time" : ISODate("2011-11-27T07:56:34Z") }
+```
 
 ## Conclusion
 

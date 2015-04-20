@@ -12,20 +12,22 @@ By the way, Splunk happens to be quite expensive. If you're interested in a free
 
 Please install `fluent-plugin-grepcounter` by running:
 
-    :::term
-    $ gem install fluent-plugin-grepcounter
+```bash
+$ gem install fluent-plugin-grepcounter
+```
 
 Next, please install `fluent-plugin-mail` by running:
 
-    :::term
-    $ gem install fluent-plugin-mail
+```bash
+$ gem install fluent-plugin-mail
+```
 
 ## Configuration
 
 ###Configuration File: Soup to Nuts
 Here is an example configuration file. It's a bit long, but each part is well-commented, so don't be afraid.
 
-    :::text
+
     <source>
       type http #This is for testing
       port 8888
@@ -37,7 +39,7 @@ Here is an example configuration file. It's a bit long, but each part is well-co
       path /var/log/apache2/access.log #This is the location of your Apache log
       tag apache.access
     </source>
-    
+
     <match apache.access>
       type grepcounter
       count_interval 3 #Time window to grep and count the # of events
@@ -46,7 +48,7 @@ Here is an example configuration file. It's a bit long, but each part is well-co
       threshold 1 #The # of events to trigger emitting an output
       add_tag_prefix error_5xx #The output event's tag will be error_5xx.apache.access
     </match>
-    
+
     <match error_5xx.apache.access>
       # The event that comes here looks like
       #{
@@ -57,11 +59,11 @@ Here is an example configuration file. It's a bit long, but each part is well-co
       #}
 
       type copy #Copying events, one to send to stdout, another for email alerts
-      
+
       <store>
         type stdout
       </store>
-      
+
       <store>
         type mail
         host smtp.gmail.com #This is for Gmail and Google Apps. Any SMTP server should work
@@ -93,14 +95,15 @@ We can do all this **without writing a single line of code or paying a dime!**
 
 Just run
 
-    :::term
-    $ fluentd -c test.conf
+```bash
+$ fluentd -c test.conf
+```
 
 to start Fluentd.
 
 To trigger the alert email, you can either manually append a 5xx error log line to your Apache log or visit (on the same server)
 
-    :::text
+
     http://localhost:8888/apache/access?json={"code":"500"}
 
 (This uses the in_http plugin). You should be receiving an alert email with the subject line "[URGENT] APACHE 5XX ERROR" in your inbox right about now!

@@ -33,13 +33,14 @@ The TD Output plugin is included in Fluentd’s deb/rpm package (`td-agent`) by 
 
 Next, please [sign up](https://console.treasure-data.com/users/sign_up) to TD and get your apikey using the `td apikey:show` command.
 
-    :::term
-    $ td account -f
-    Enter your Treasure Data credentials.
-    Email: your.email@gmail.com
-    Password (typing will be hidden):
-    $ td apikey:show
-    kdfasklj218dsakfdas0983120
+```bash
+$ td account -f
+Enter your Treasure Data credentials.
+Email: your.email@gmail.com
+Password (typing will be hidden):
+$ td apikey:show
+kdfasklj218dsakfdas0983120
+```
 
 ## Fluentd Configuration
 
@@ -74,38 +75,41 @@ The match section specifies the regexp used to look for matching tags. If a matc
 
 To test the configuration, just post the JSON to Fluentd. Sending a USR1 signal flushes Fluentd's buffer into TD.
 
-    :::term
-    $ curl -X POST -d 'json={"action":"login","user":2}' \
-      http://localhost:8888/td.testdb.www_access
-    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+```bash
+$ curl -X POST -d 'json={"action":"login","user":2}' \
+  http://localhost:8888/td.testdb.www_access
+$ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+```
 
 Next, please use the `td tables` command. If the count is not zero, the data was imported successfully.
 
-    :::term
-    $ td tables
-    +----------+------------+------+-------+--------+
-    | Database | Table      | Type | Count | Schema |
-    +----------+------------+------+-------+--------+
-    | testdb   | www_access | log  |     1 |        |
-    +----------+------------+------+-------+--------+
+```bash
+$ td tables
++----------+------------+------+-------+--------+
+| Database | Table      | Type | Count | Schema |
++----------+------------+------+-------+--------+
+| testdb   | www_access | log  |     1 |        |
++----------+------------+------+-------+--------+
+```
 
 You can now issues queries against the imported data.
 
-    :::term
-    $ td query -w -d testdb \
-      "SELECT COUNT(1) AS cnt FROM www_access"
-    queued...
-    started at 2012-04-10T23:44:41Z
-    2012-04-10 23:43:12,692 Stage-1 map = 0%,  reduce = 0%
-    2012-04-10 23:43:18,766 Stage-1 map = 100%,  reduce = 0%
-    2012-04-10 23:43:32,973 Stage-1 map = 100%,  reduce = 100%
-    Status     : success
-    Result     :
-    +-----+
-    | cnt |
-    +-----+
-    |   1 |
-    +-----+
+```bash
+$ td query -w -d testdb \
+  "SELECT COUNT(1) AS cnt FROM www_access"
+queued...
+started at 2012-04-10T23:44:41Z
+2012-04-10 23:43:12,692 Stage-1 map = 0%,  reduce = 0%
+2012-04-10 23:43:18,766 Stage-1 map = 100%,  reduce = 0%
+2012-04-10 23:43:32,973 Stage-1 map = 100%,  reduce = 100%
+Status     : success
+Result     :
++-----+
+| cnt |
++-----+
+|   1 |
++-----+
+```
 
 NOTE: It's not advisable to send sensitive user information to the cloud. To assist with this need, out_tdlog comes with some anonymization systems. Please see the <a href="http://github.com/treasure-data/fluent-plugin-td/">Treasure Data plugin</a> article for details.
 

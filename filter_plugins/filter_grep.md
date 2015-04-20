@@ -6,7 +6,7 @@ The `filter_grep` filter plugin "greps" events by the values of specified fields
 
 `filter_grep` is included in Fluentd's core. No installation required.
 
-    :::text
+    
     <filter foo.bar>
       type grep
       regexp1 message cool
@@ -22,13 +22,13 @@ The above example matches any event that satisfies the following conditions:
 
 Hence, the following events are kept:
 
-    :::text
+    
     {"message":"It's cool outside today", "hostname":"web001.example.com"}
     {"message":"That's not cool", "hostname":"web1337.example.com"}
 
 whereas the following examples are filtered out:
 
-    :::text
+    
     {"message":"I am cool but you are uncool", "hostname":"db001.example.com"}
     {"hostname":"web001.example.com"}
     {"message":"It's cool outside today"}
@@ -44,12 +44,12 @@ The "N" at the end should be replaced with an integer between 1 and 20 (ex: "reg
 
 For example, the following filters out events unless the field "price" is a positive integer.
 
-    :::text
+    
     regexp1  [1-9]\d*
 
 The grep filter filters out UNLESS all regexpN's are matched. Hence, if you have
 
-    :::text
+    
     regexp1 price     [1-9]\d*
     regexp2 item_name ^book_
 
@@ -64,12 +64,12 @@ The "N" at the end should be replaced with an integer between 1 and 20 (ex: "exc
 
 For example, the following filters out events whose "status_code" field is 5xx.
 
-    :::text
+    
     exclude1 status_code ^5\d\d$
 
 The grep filter filters out if any excludeN is matched. Hence, if you have
 
-    :::text
+    
     exclude1 status_code ^5\d\d$
     exclude2 url \.css$
 

@@ -6,7 +6,7 @@ The `in_tail` Input plugin allows Fluentd to read events from the tail of text f
 
 `in_tail` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <source>
       type tail
       path /var/log/httpd-access.log
@@ -33,7 +33,7 @@ The tag of the event.
 
 `*` can be used as a placeholder that expands to the actual file path, replacing '/' with '.'. For example, if you have the following configuration
 
-    :::text
+    
     path /path/to/file
     tag foo.*
 
@@ -44,7 +44,7 @@ The paths to read. Multiple paths can be specified, separated by ‘,’.
 
 `*` and strftime format can be included to add/remove watch file dynamically. At interval of `refresh_interval`, Fluentd refreshes the list of watch file.
 
-    :::text
+    
     path /path/to/%Y/%m/%d/*
 
 If the date is 20140401, Fluentd starts to watch the files in /path/to/2014/04/01 directory. See also `read_from_head` parameter.
@@ -55,7 +55,7 @@ NOTE: You should not use '*' with log rotation because it may cause the log dupl
 
 The paths to exclude the files from watcher list. For example, if you want to remove compressed files, you can use following pattern.
 
-    :::text
+    
     path /path/to/*
     exclude_path ["/path/to/*.gz", "/path/to/*.zip"]
 
@@ -80,7 +80,7 @@ INCLUDE: _in_types
 ### pos_file (highly recommended)
 This parameter is highly recommended. Fluentd will record the position it last read into this file.
 
-    :::text
+    
     pos_file /var/log/td-agent/tmp/access.log.pos
 
 #### time_format

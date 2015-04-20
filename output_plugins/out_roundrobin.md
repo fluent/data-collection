@@ -6,7 +6,7 @@ The `roundrobin` Output plugin distributes events to multiple outputs using a ro
 
 `out_roundrobin` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <match pattern>
       type roundrobin
     

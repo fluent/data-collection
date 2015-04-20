@@ -6,7 +6,7 @@ The `filter_record_transformer` filter plugin mutates/transforms incoming event 
 
 `filter_record_modifier` is included in Fluentd's core. No installation required.
 
-    :::text
+    
     <filter foo.bar>
       type record_transformer
       <record>
@@ -16,17 +16,17 @@ The `filter_record_transformer` filter plugin mutates/transforms incoming event 
 
 The above filter adds the new field "hostname" with the server's hostname as its value (It is taking advantage of Ruby's string interpolation). So, an input like
 
-    :::text
+    
     {"message":"hello world!"}
 
 is transformed into
 
-    :::text
+    
     {"message":"hello world!", "hostname":"db001.internal.example.com"}
 
 Here is another example where the field "total" is divided by the field "count" to create a new field "avg":
 
-    :::text
+    
     <filter foo.bar>
       type record_transformer
       enable_ruby
@@ -37,19 +37,19 @@ Here is another example where the field "total" is divided by the field "count" 
 
 It transforms an event like
 
-    :::text
+    
     {"total":100, "count":10}
 
 into
 
-    :::text
+    
     {"total":100, "count":10, "avg":"10"}
 
 With the `enable_ruby` option, an arbitrary Ruby expression can be used inside `${...}`. Note that the "avg" field is typed as string. Currently, `${...}` always returns strings.
 
 Finally, this configuration embeds the value of the second part of the tag in the field "service_name". It might come in handy when aggregating data across many services.
 
-    :::text
+    
     <filter web.*>
       type record_transformer
       <record>
@@ -65,7 +65,7 @@ So, if an event with the tag "web.auth" and record `{"user_id":1, "status":"ok"}
 
 Parameters inside `<record>` directives are considered to be new key-value pairs:
 
-    :::text
+    
     <record>
       NEW_FIELD NEW_VALUE
     </record>

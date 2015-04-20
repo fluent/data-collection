@@ -12,7 +12,7 @@ Buffer plugins are used by buffered output plugins, such as `out_file`, `out_for
 
 The buffer structure is a queue of chunks like the following:
 
-    :::text
+    
     queue
     +---------+
     |         |
@@ -32,7 +32,7 @@ If the bottom chunk write out fails, it will remain in the queue and Fluentd wil
 
 All buffered output plugins support the following parameters:
 
-    :::text
+    
     <match pattern>
       buffer_type memory
       buffer_chunk_limit 256m
@@ -45,7 +45,7 @@ All buffered output plugins support the following parameters:
 
 `buffer_type` specifies the buffer plugin to use. The `memory` Buffer plugin is used by default. You can also specify `file` as the buffer type alongside the `buffer_path` parameter as follows:
 
-    :::text
+    
     <match pattern>
       buffer_type file
       buffer_path /var/fluentd/buffer/ #make sure fluentd has write access to the directory!

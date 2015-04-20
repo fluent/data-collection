@@ -10,14 +10,15 @@ Looking to get data out of apache logs into s3? You can do that with [fluentd](/
 
 Here is how:
 
-    :::term
-    $ gem install fluentd
-    $ gem install fluent-plugin-s3
-    $ touch fluentd.conf
+```bash
+$ gem install fluentd
+$ gem install fluent-plugin-s3
+$ touch fluentd.conf
+```
 
 `fluentd.conf` should look like this (just copy and paste this into fluentd.conf):
 
-    :::text
+
     <source>
       type tail
       path /var/log/httpd-access.log #...or where you placed your Apache access log
@@ -42,7 +43,8 @@ Here is how:
 
 After that, you can start fluentd and everything should work:
 
-    :::term
-    $ fluentd -c fluentd.conf
+```bash
+$ fluentd -c fluentd.conf
+```
 
 Of course, this is just a quick example. If you are thinking of running fluentd in production, consider using [td-agent](//docs.treasure-data.com/articles/td-agent), the enterprise version of Fluentd packaged and maintained by [Treasure Data, Inc.](//www.treasure-data.com).

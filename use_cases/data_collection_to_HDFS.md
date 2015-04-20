@@ -89,16 +89,18 @@ Please confirm that the HDFS user has write access to the *path* specified as th
 
 To test the configuration, just post the JSON to Fluentd (we use the curl command in this example). Sending a USR1 signal flushes Fluentd's buffer into WebHDFS.
 
-    :::term
-    $ curl -X POST -d 'json={"action":"login","user":2}' \
-      http://localhost:8888/hdfs.access.test
-    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+```bash
+$ curl -X POST -d 'json={"action":"login","user":2}' \
+  http://localhost:8888/hdfs.access.test
+$ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+```
 
 We can then access HDFS to see the stored data.
 
-    :::term
-    $ sudo -u hdfs hadoop fs -lsr /log/
-    drwxr-xr-x   - 1 supergroup          0 2012-10-22 09:40 /log/20121022_14/access.log.dev
+```bash
+$ sudo -u hdfs hadoop fs -lsr /log/
+drwxr-xr-x   - 1 supergroup          0 2012-10-22 09:40 /log/20121022_14/access.log.dev
+```
 
 ## Conclusion
 

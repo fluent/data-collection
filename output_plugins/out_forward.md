@@ -12,7 +12,7 @@ NOTE: Do <b>NOT</b> use this plugin for inter-DC or public internet data transfe
 
 `out_forward` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+
     <match pattern>
       type forward
       send_timeout 60s
@@ -20,7 +20,7 @@ NOTE: Do <b>NOT</b> use this plugin for inter-DC or public internet data transfe
       heartbeat_interval 1s
       phi_threshold 16
       hard_timeout 60s
-      
+
       <server>
         name myserver1
         host 192.168.1.3
@@ -34,7 +34,7 @@ NOTE: Do <b>NOT</b> use this plugin for inter-DC or public internet data transfe
         weight 60
       </server>
       ...
-      
+
       <secondary>
         type file
         path /var/log/fluent/forward-failed
@@ -91,11 +91,11 @@ The hard timeout used to detect server failure. The default value is equal to th
 ### standby
 Marks a node as the standby node for an Active-Standby model between Fluentd nodes. When an active node goes down, the standby node is promoted to an active node. The standby node is not used by the `out_forward` plugin until then.
 
-    :::text
+
     <match pattern>
       type forward
       ...
-      
+
       <server>
         name myserver1
         host 192.168.1.3
@@ -121,8 +121,9 @@ INCLUDE: _log_level_params
 ### "no nodes are available"
 Please make sure that you can communicate with port 24224 using **not only TCP, but also UDP**. These commands will be useful for checking the network configuration.
 
-    :::term
-    $ telnet host 24224
-    $ nmap -p 24224 -sU host
+```bash
+$ telnet host 24224
+$ nmap -p 24224 -sU host
+```
 
 Please note that there is one [known issue](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2019944) where VMware will occasionally lose small UDP packets used for heartbeat.

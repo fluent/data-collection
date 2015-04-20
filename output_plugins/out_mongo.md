@@ -16,9 +16,10 @@ Fluentd enables your apps to insert records to MongoDB asynchronously with batch
 ## Install
 
 `out_mongo` is included in td-agent by default. Fluentd gem users will need to install the fluent-plugin-mongo gem using the following command.
- 
-    :::term
-    $ fluent-gem install fluent-plugin-mongo
+
+```bash
+$ fluent-gem install fluent-plugin-mongo
+```
 
 ## Example Configuration
 
@@ -37,10 +38,10 @@ Fluentd enables your apps to insert records to MongoDB asynchronously with batch
       # authentication
       user michael
       password jordan
-      
+
       # key name of timestamp
       time_key time
-      
+
       # flush
       flush_interval 10s
     </match>
@@ -84,7 +85,7 @@ The key name of timestamp. (default is "time")
 ### tag_mapped
 This option will allow out_mongo to use Fluentd's tag to determine the destination collection. For example, if you generate records with tags 'mongo.foo', the records will be inserted into the `foo` collection within the `fluentd` database.
 
-    :::text
+
     <match mongo.*>
       type mongo
       host fluentd

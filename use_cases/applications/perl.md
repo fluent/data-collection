@@ -23,7 +23,7 @@ Please refer to the following documents to install fluentd.
 
 Next, please configure Fluentd to use the [forward Input plugin](in_forward) as its data source.
 
-    :::text
+
     <source>
       type forward
       port 24224
@@ -34,34 +34,38 @@ Next, please configure Fluentd to use the [forward Input plugin](in_forward) as 
 
 Please restart your agent once these lines are in place.
 
-    :::term
-    # for rpm/deb only
-    $ sudo /etc/init.d/td-agent restart
+```bash
+# for rpm/deb only
+$ sudo /etc/init.d/td-agent restart
+```
 
 ## Using Fluent::Logger
 
 First, install the *[Fluent::Logger](http://search.cpan.org/dist/Fluent-Logger/)* library via CPAN.
 
-    :::term
-    $ cpan
-    cpan[1]> install Fluent::Logger
+```bash
+$ cpan
+cpan[1]> install Fluent::Logger
+```
 
 Next, initialize and post the records as shown below.
 
-    :::perl
-    # test.pl
-    use Fluent::Logger;
-    my $logger = Fluent::Logger->new(
-        host => '127.0.0.1',
-        port => 24224,
-        tag_prefix => 'fluentd.test',
-    );
-    $logger->post("follow", { "entry1" => "value1", "entry2" => 2 });
+```perl
+# test.pl
+use Fluent::Logger;
+my $logger = Fluent::Logger->new(
+    host => '127.0.0.1',
+    port => 24224,
+    tag_prefix => 'fluentd.test',
+);
+$logger->post("follow", { "entry1" => "value1", "entry2" => 2 });
+```
 
 Executing the script will send the logs to Fluentd.
 
-    :::term
-    $ perl test.pl
+```bash
+$ perl test.pl
+```
 
 The logs should be output to `/var/log/td-agent/td-agent.log` or stdout of the Fluentd process via the [stdout Output plugin](out_stdout).
 

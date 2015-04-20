@@ -19,8 +19,9 @@ The [Riak output plugin](https://github.com/kuenishi/fluent-plugin-riak) is used
 
 Rubygems users can run the command below to install the plugin:
 
-    :::term
-    $ gem install fluent-plugin-riak
+```bash
+$ gem install fluent-plugin-riak
+```
 
 ### td-agent Users
 
@@ -58,31 +59,33 @@ The `<match riak.**>...</match>` section tells Fluentd to look for events whose 
 
 Launch Fluentd with the following command:
 
-    :::term
-    $ fluentd -c fluentd.conf
+```bash
+$ fluentd -c fluentd.conf
+```
 
 NOTE: Please confirm that you have the file access permissions to (1) read the Apache log file and (2) write to `/var/log/fluentd/apache2.access_log.pos` (sudo-ing might help).
 
 You should now see data coming into your Riak cluster. We can make sure that everything is running smoothly by hitting Riak's HTTP API:
 
-    :::term
-    $ curl http://localhost:8098/buckets/fluentlog/keys?keys=true
-    {"keys":["2014-01-23-d30b0698-b9de-4290-b8be-a66555497078", ...]}
-    $ curl http://localhost:8098/buckets/fluentlog/keys/2014-01-23-d30b0698-b9de-4290-b8be-a66555497078
-    [
-      {
-        "tag": "riak.apache",
-        "time": "2004-03-08T01:23:54Z",
-        "host": "64.242.88.10",
-        "user": null,
-        "method": "GET",
-        "path": "/twiki/bin/statistics/Main",
-        "code": 200,
-        "size": 808,
-        "referer": null,
-        "agent": null
-      }
-    ]
+```bash
+$ curl http://localhost:8098/buckets/fluentlog/keys?keys=true
+{"keys":["2014-01-23-d30b0698-b9de-4290-b8be-a66555497078", ...]}
+$ curl http://localhost:8098/buckets/fluentlog/keys/2014-01-23-d30b0698-b9de-4290-b8be-a66555497078
+[
+  {
+    "tag": "riak.apache",
+    "time": "2004-03-08T01:23:54Z",
+    "host": "64.242.88.10",
+    "user": null,
+    "method": "GET",
+    "path": "/twiki/bin/statistics/Main",
+    "code": 200,
+    "size": 808,
+    "referer": null,
+    "agent": null
+  }
+]
+```
 
 There it is! (the response JSON is formatted for readability)
 

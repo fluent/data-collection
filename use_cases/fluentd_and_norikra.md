@@ -93,9 +93,10 @@ The `<default>...</default>` section specifies which fields are sent to the Nori
 
 To test the configuration, just post the JSON to Fluentd (we use the curl command in this example).
 
-    :::term
-    $ curl -X POST -d 'json={"action":"login","user":2}' \
-      http://localhost:8888/data.access
+```bash
+$ curl -X POST -d 'json={"action":"login","user":2}' \
+  http://localhost:8888/data.access
+```
 
 Norikra's console log will show that Fluentd has opened the target `access` and sent a message with fields of `action` and `user`.
 
@@ -105,15 +106,17 @@ Norikra's console log will show that Fluentd has opened the target `access` and 
 
 We can check its fields with the `norikra-client` command (from console that has the PATH to JRuby).
 
-    $ norikra-client target list
-    TARGET	AUTO_FIELD
-    access	true
-    1 targets found.
-    $ norikra-client field list access
-    FIELD	TYPE	OPTIONAL
-    action	string	false
-    user	integer	false
-    2 fields found.
+```bash
+$ norikra-client target list
+TARGET	AUTO_FIELD
+access	true
+1 targets found.
+$ norikra-client field list access
+FIELD	TYPE	OPTIONAL
+action	string	false
+user	integer	false
+2 fields found.
+```
 
 ### Registering Queries and Fetching Outputs
 
@@ -128,41 +131,46 @@ We can add queries on opened targets via the WebUI or CLI. The following query (
 
 To register a query, issue `norikra-client query add` on the CLI.
 
-    $ norikra-client query add test_query "SELECT action, count(*) AS c FROM access.win:time_batch(10 sec) WHERE user != 0 GROUP BY action"
-    $ norikra-client query list
-    NAME	GROUP	TARGETS	QUERY
-    test_query	default	access	SELECT action, count(*) AS c FROM access.win:time_batch(10 sec) WHERE user != 0 GROUP BY action
-    1 queries found.
+```bash
+$ norikra-client query add test_query "SELECT action, count(*) AS c FROM access.win:time_batch(10 sec) WHERE user != 0 GROUP BY action"
+$ norikra-client query list
+NAME	GROUP	TARGETS	QUERY
+test_query	default	access	SELECT action, count(*) AS c FROM access.win:time_batch(10 sec) WHERE user != 0 GROUP BY action
+1 queries found.
+```
 
 Once the query has been registered, post the events that you want.
 
-    $ curl -X POST -d 'json={"action":"login","user":2}' \
-      http://localhost:8888/data.access
-    $ curl -X POST -d 'json={"action":"login","user":0}' \
-      http://localhost:8888/data.access
-    $ curl -X POST -d 'json={"action":"write","user":2}' \
-      http://localhost:8888/data.access
-    $ curl -X POST -d 'json={"action":"save","user":2}' \
-      http://localhost:8888/data.access
-    $ curl -X POST -d 'json={"action":"logout","user":2}' \
-      http://localhost:8888/data.access
-    $ curl -X POST -d 'json={"action":"logout","user":0}' \
-      http://localhost:8888/data.access
-    $ curl -X POST -d 'json={"action":"login","user":2}' \
-      http://localhost:8888/data.access
+```bash
+$ curl -X POST -d 'json={"action":"login","user":2}' \
+  http://localhost:8888/data.access
+$ curl -X POST -d 'json={"action":"login","user":0}' \
+  http://localhost:8888/data.access
+$ curl -X POST -d 'json={"action":"write","user":2}' \
+  http://localhost:8888/data.access
+$ curl -X POST -d 'json={"action":"save","user":2}' \
+  http://localhost:8888/data.access
+$ curl -X POST -d 'json={"action":"logout","user":2}' \
+  http://localhost:8888/data.access
+$ curl -X POST -d 'json={"action":"logout","user":0}' \
+  http://localhost:8888/data.access
+$ curl -X POST -d 'json={"action":"login","user":2}' \
+  http://localhost:8888/data.access
+```
 
 And fetch output events from this `test_query` query.
 
-    $ norikra-client event fetch test_query
-    {"time":"2014/05/20 21:00:24","c":1,"action":"logout"}
-    {"time":"2014/05/20 21:00:24","c":1,"action":"save"}
-    {"time":"2014/05/20 21:00:24","c":1,"action":"write"}
-    {"time":"2014/05/20 21:00:24","c":2,"action":"login"}
-    {"time":"2014/05/20 21:00:34","c":0,"action":"logout"}
-    {"time":"2014/05/20 21:00:34","c":0,"action":"save"}
-    {"time":"2014/05/20 21:00:34","c":0,"action":"write"}
-    {"time":"2014/05/20 21:00:34","c":0,"action":"login"}
-    $
+```bash
+$ norikra-client event fetch test_query
+{"time":"2014/05/20 21:00:24","c":1,"action":"logout"}
+{"time":"2014/05/20 21:00:24","c":1,"action":"save"}
+{"time":"2014/05/20 21:00:24","c":1,"action":"write"}
+{"time":"2014/05/20 21:00:24","c":2,"action":"login"}
+{"time":"2014/05/20 21:00:34","c":0,"action":"logout"}
+{"time":"2014/05/20 21:00:34","c":0,"action":"save"}
+{"time":"2014/05/20 21:00:34","c":0,"action":"write"}
+{"time":"2014/05/20 21:00:34","c":0,"action":"login"}
+```
 
 If posts are done in 10 seconds, this query calculates all events in first 10 seconds, and counts events per `action` for events with `user != 0` only, and outputs events at "2014/05/20 21:00:24". At "2014/05/20 21:00:34", just after next 10 seconds, this query reports that no events arrived (This is teardown records, and reported only once).
 

@@ -6,7 +6,7 @@ The `out_exec` TimeSliced Output plugin passes events to an external program. Th
 
 `out_exec` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <match pattern>
       type exec
       command cmd arg arg
@@ -26,7 +26,7 @@ This example illustrates how to run FizzBuzz with out_exec.
 
 We assume that the input file is specified by the last argument in the command line ("ARGV[-1]"). The following script `fizzbuzz.py` runs [FizzBuzz](http://en.wikipedia.org/wiki/Fizz_buzz) against the new-line delimited sequence of natural numbers (1, 2, 3...) and writes the output to "foobar.out".
 
-    :::text
+    
     #!/usr/bin/env python
     import sys
     input = file(sys.argv[-1])
@@ -48,7 +48,7 @@ Note that this program is written in Python. For out_exec (as well as out_exec_f
 
 Then, configure Fluentd as follows
 
-    :::text
+    
     <source>
 	  type forward
 	</source>
@@ -67,12 +67,12 @@ The intermediary TSV is at `buffer_path`, and the command `python /path/to/fizzb
 	
 If you start Fluentd and run
 
-    :::text
+    
     $ for i in `seq 15`; do echo "{\"fizzbuzz\":$i}" | fluent-cat fizzbuzz; done
 
 Then, after 5 seconds, you get a file named `foobar.out`.
 
-    :::text
+    
 	$ cat foobar.out
 	1
     2
@@ -108,7 +108,7 @@ The following formats are supported:
 
 When using the tsv format, please also specify the comma-separated `keys` parameter.
 
-    :::text
+    
     keys k1,k2,k3
 
 * json

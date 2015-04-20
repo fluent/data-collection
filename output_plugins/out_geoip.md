@@ -8,32 +8,34 @@ NOTE: This document doesn't describe all parameters. If you want to know full fe
 
 * The GeoIP library.
 
-    :::term
-    # for RHEL/CentOS
-    $ sudo yum install geoip-devel --enablerepo=epel
+```bash
+# for RHEL/CentOS
+$ sudo yum install geoip-devel --enablerepo=epel
 
-    # for Ubuntu/Debian
-    $ sudo apt-get install libgeoip-dev
+# for Ubuntu/Debian
+$ sudo apt-get install libgeoip-dev
 
-    # for MacOSX (brew)
-    $ brew install geoip
+# for MacOSX (brew)
+$ brew install geoip
+```
 
 ## Install
 
 `out_geoip` is not included in td-agent. All users must install the fluent-plugin-geoip gem using the following command.
 
-    :::term
-    $ fluent-gem install fluent-plugin-geoip
-    OR # td-agent 2
-    $ sudo /usr/sbin/td-agent-gem install fluent-plugin-geoip
-    OR # td-agent 1
-    $ sudo /usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-geoip
+```bash
+$ fluent-gem install fluent-plugin-geoip
+OR # td-agent 2
+$ sudo /usr/sbin/td-agent-gem install fluent-plugin-geoip
+OR # td-agent 1
+$ sudo /usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-geoip
+```
 
 ## Example Configuration
 
 The configuration shown below adds geolocation information to apache.access
 
-    :::text
+
     <match test.message>
       type geoip
       geoip_lookup_key        host
@@ -47,7 +49,7 @@ The configuration shown below adds geolocation information to apache.access
     </match>
 
 
-    :::text
+
     # original record
     test.message {
       "host":"66.102.9.80",
@@ -119,7 +121,7 @@ Note: The following plugins are required:
  * fluent-plugin-geoip
  * fluent-plugin-elasticsearch
 
-    :::text
+
     <match td.apache.access>
       type geoip
 

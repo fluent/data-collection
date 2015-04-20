@@ -39,7 +39,7 @@ Let’s start configuring Fluentd. If you used the deb/rpm package, Fluentd's co
 
 For the input source, we will set up Fluentd to track the recent Apache logs (typically found at /var/log/apache2/access_log) The Fluentd configuration file should look like this:
 
-    :::text
+
     <source>
       type tail
       format apache2
@@ -63,7 +63,7 @@ That’s it! You should now be able to output a JSON-formatted data stream for F
 
 The output destination will be Amazon S3. The output configuration should look like this:
 
-    :::text
+
     <match s3.*.*>
       type s3
 
@@ -86,8 +86,9 @@ The match section specifies the regexp used to look for matching tags. If a matc
 
 To test the configuration, just ping the Apache server. This example uses the `ab` (Apache Bench) program.
 
-    :::term
-    $ ab -n 100 -c 10 http://localhost/
+```bash
+$ ab -n 100 -c 10 http://localhost/
+```
 
 Then, log into your [AWS Console](https://console.aws.amazon.com/s3/home) and look at your bucket.
 

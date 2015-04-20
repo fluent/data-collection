@@ -10,14 +10,15 @@ Looking to get data out of http rest api into elasticsearch? You can do that wit
 
 Here is how:
 
-    :::term
-    $ gem install fluentd
-    $ gem install fluent-plugin-elasticsearch
-    $ touch fluentd.conf
+```bash
+$ gem install fluentd
+$ gem install fluent-plugin-elasticsearch
+$ touch fluentd.conf
+```
 
 `fluentd.conf` should look like this (just copy and paste this into fluentd.conf):
 
-    :::text
+
     <source>
       type http
       port 8888
@@ -39,7 +40,8 @@ Here is how:
 
 After that, you can start fluentd and everything should work:
 
-    :::term
-    $ fluentd -c fluentd.conf
+```bash
+$ fluentd -c fluentd.conf
+```
 
 Of course, this is just a quick example. If you are thinking of running fluentd in production, consider using [td-agent](//docs.treasure-data.com/articles/td-agent), the enterprise version of Fluentd packaged and maintained by [Treasure Data, Inc.](//www.treasure-data.com).

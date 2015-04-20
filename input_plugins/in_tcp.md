@@ -6,7 +6,7 @@ The `in_tcp` Input plugin enables Fluentd to accept TCP payload.
 
 `in_tcp` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <source>
       type tcp
       port 20001 # optional. 5170 by default
@@ -40,17 +40,17 @@ INCLUDE: _in_parsers
 
 Specify body format by regular expression.
 
-    :::text
+    
     format /^(?<field1>\d+):(?<field2>\w+)$/
 
 If you execute following command:
 
-    :::term
+    ```bash
     $ echo '123456:awesome' | netcat 0.0.0.0 5170
 
 then got parsed result like below:
 
-    :::text
+    
     {"field1":"123456","field2":"awesome}
 
 `ltsv`, `tsv`, `csv`, `json` and `none` are also supported.
@@ -61,12 +61,12 @@ The field name of the client's hostname. If set the value, the client's hostname
 
 If you set following configuration:
 
-    :::text
+    
     source_host_key client_host
 
 then the client's hostname is set to `client_host` field.
 
-    :::text
+    
     {
         ...
         "foo": "bar",

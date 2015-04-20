@@ -8,7 +8,7 @@ As described in the articles above, the _Setup_ in the configuration files is th
 
 We will use the [in_http](in_http) and the [out_stdout](out_stdout) plugins as examples to describe the events cycle. The following is a basic definition on the configuration file to specify an _http_ input, for short: we will be listening for __HTTP Requests__:
 
-    :::text
+    
     <source>
       type http
       port 8888
@@ -17,14 +17,14 @@ We will use the [in_http](in_http) and the [out_stdout](out_stdout) plugins as e
 
 The definition specify that a HTTP server will be listening on TCP port 8888. Now lets define a _Matching_ rule and a desired output that will just print to the standard output the data that arrived on each incoming request:
 
-    :::text
+    
     <match test.cycle>
       type stdout
     </match>
 
 The _Match_ sets a rule where each _Incoming_ event that arrives with a __Tag__ equals to _test\_cycle_, will match and use the _Output_ plugin type called _stdout_. At this point we have an _Input_ type, a _Match_ and an _Output_. Let's test the setup using _Curl_:
 
-    :::text
+    
     $ curl -i -X POST -d 'json={"action":"login","user":2}' http://localhost:9880/test.cycle
     HTTP/1.1 200 OK
     Content-type: text/plain
@@ -33,7 +33,7 @@ The _Match_ sets a rule where each _Incoming_ event that arrives with a __Tag__ 
 
 On the [Fluentd](http://fluentd.org) server side the output should look like this:
 
-    :::text
+    
     $ bin/fluentd -c in_http.conf
     2015-01-19 12:37:41 -0600 [info]: reading config file path="in_http.conf"
     2015-01-19 12:37:41 -0600 [info]: starting fluentd-0.12.3
@@ -63,7 +63,7 @@ Now we will expand our previous basic example and we will add more steps in our 
 
 A _Filter_ aims to behave like a rule to pass or reject an event. The following configuration adds a _Filter_ definition:
 
-    :::text
+    
     <source>
       type http
       port 8888
@@ -83,7 +83,7 @@ As you can see, the new _Filter_ definition added will be a mandatory step befor
 
 From a _Terminal_, run the following two _Curl_ commands, please note that each one contains a different _action_ value:
 
-    :::text
+    
     $ curl -i -X POST -d 'json={"action":"login","user":2}' http://localhost:8880/test.cycle
     HTTP/1.1 200 OK
     Content-type: text/plain
@@ -98,7 +98,7 @@ From a _Terminal_, run the following two _Curl_ commands, please note that each 
 
 Now looking at the [Fluentd](http://fluentd.org) service output we can realize that just the one with the _action_ equals to _login_ just matched. The _logout_ _Event_ was discarded:
 
-    :::text
+    
     $ bin/fluentd -c in_http.conf
     2015-01-19 12:37:41 -0600 [info]: reading config file path="in_http.conf"
     2015-01-19 12:37:41 -0600 [info]: starting fluentd-0.12.4
@@ -127,7 +127,7 @@ As you can see, the _Events_ follow a _step by step cycle_ where they are proces
 
 This new implementation called _Labels_, aims to solve the configuration file complexity and allows to define new _Routing_ sections that do not follow the _top to bottom_ order, instead it acts like linked references. Talking the previous example, we will modify the setup as follows:
 
-    :::text
+    
     <source>
       type http
       bind 0.0.0.0

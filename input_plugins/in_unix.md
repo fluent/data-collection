@@ -6,7 +6,7 @@ The `in_unix` Input plugin enables Fluentd to retrieve records from the Unix Dom
 
 `in_unix` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <source>
       type unix
       path /path/to/socket.sock

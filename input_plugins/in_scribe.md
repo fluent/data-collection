@@ -8,12 +8,12 @@ Since Scribe hasn't been well maintained recently, this plugin is useful for exi
 
 `in_scribe` is included in td-agent by default. Fluentd gem users will need to install the fluent-plugin-scribe gem using the following command.
 
-    :::term
+    ```bash
     $ fluent-gem install fluent-plugin-scribe
 
 ### Example Configuration
 
-    :::text
+    
     <source>
       type scribe
       port 1463

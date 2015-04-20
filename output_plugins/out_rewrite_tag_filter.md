@@ -1,19 +1,19 @@
 # rewrite_tag_filter Output Plugin
 
-The `out_rewrite_tag_filter` Output plugin has designed to rewrite tag like mod_rewrite. Re-emit a record with rewrited tag when a value matches/unmatches with the regular expression.  Also you can change a tag from apache log by domain, status-code(ex. 500 error), user-agent, request-uri, regex-backreference and so on with regular expression. 
+The `out_rewrite_tag_filter` Output plugin has designed to rewrite tag like mod_rewrite. Re-emit a record with rewrited tag when a value matches/unmatches with the regular expression.  Also you can change a tag from apache log by domain, status-code(ex. 500 error), user-agent, request-uri, regex-backreference and so on with regular expression.
 
 ## How it works
 
 It is a sample to arrange the tags by the regexp matched value of 'message'.
 
-    :::text
+
     # Configuration
     <match app.message>
       type rewrite_tag_filter
       rewriterule1 message ^\[(\w+)\] $1.${tag}
     </match>
 
-    :::text
+
     +----------------------------------------+        +----------------------------------------------+
     | original record                        |        | rewrited tag record                          |
     |----------------------------------------|        |----------------------------------------------|
@@ -27,14 +27,15 @@ It is a sample to arrange the tags by the regexp matched value of 'message'.
 
 `out_rewrite_tag_filter` is included in td-agent by default (v1.1.18 or later). Fluentd gem users will have to install the fluent-plugin-rewrite-tag-filter gem using the following command.
 
-    :::term
-    $ fluent-gem install fluent-plugin-rewrite-tag-filter
+```bash
+$ fluent-gem install fluent-plugin-rewrite-tag-filter
+```
 
 ## Example Configuration
 
 Configuration design is dropping some pattern record first, then re-emit other matched record as new tag name.
 
-    :::text
+
     <match apache.access>
       type rewrite_tag_filter
       capitalize_regex_backreference yes
@@ -98,7 +99,7 @@ Note: These plugins are required to be installed.
 
 ##### [Config1] Application Servers
 
-    :::text
+
     # Input access log to fluentd with embedded in_tail plugin
     <source>
       type tail
@@ -122,7 +123,7 @@ Note: These plugins are required to be installed.
 
 ##### [Config2] Monitoring Server
 
-    :::text
+
     # built-in TCP input
     <source>
       type forward
@@ -166,7 +167,7 @@ Note: These plugins are required to be installed.
 
 ##### [Config1] Application Servers
 
-    :::text
+
     # Input access log to fluentd with embedded in_tail plugin
     # sample results: {"host":"127.0.0.1","user":null,"method":"GET","path":"/","code":500,"size":5039,"referer":null,"agent":"Mozilla"}
     <source>
@@ -191,7 +192,7 @@ Note: These plugins are required to be installed.
 
 ##### [Config2] Monitoring Server
 
-    :::text
+
     # built-in TCP input
     <source>
       type forward

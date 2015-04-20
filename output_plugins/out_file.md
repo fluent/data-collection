@@ -6,7 +6,7 @@ The `out_file` TimeSliced Output plugin writes events to files. By default, it c
 
 `out_file` is included in Fluentd's core. No additional installation process is required.
 
-    :::text
+    
     <match pattern>
       type file
       path /var/log/fluent/myapp
@@ -35,7 +35,7 @@ NOTE: Initially, you may see a file which looks like "/path/to/file.20140101.log
 The flushed chunk is appended to existence file or not. The default is `false`.
 By default, out_file flushes each chunk to different path.
 
-    :::text
+    
     # append false
     log.20140608_0.log
     log.20140608_1.log
@@ -45,7 +45,7 @@ By default, out_file flushes each chunk to different path.
 This makes parallel file processing easy. But if you want to disable this behaviour,
 you can disable it by setting `append true`.
 
-    :::text
+    
     # append true
     log.20140608.log
     log.20140609.log
