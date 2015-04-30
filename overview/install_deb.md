@@ -82,21 +82,3 @@ By default, `/etc/td-agent/td-agent.conf` is configured to take logs from HTTP a
 ```bash
 $ curl -X POST -d 'json={"json":"message"}' http://localhost:8888/debug.test
 ```
-
-## Next Steps
-
-You're now ready to collect your real logs using Fluentd. Please see the following tutorials to learn how to collect your data from various data sources.
-
-  * Basic Configuration
-    * [Config File](config-file)
-  * Application Logs
-    * [Ruby](ruby), [Java](java), [Python](python), [PHP](php), [Perl](perl), [Node.js](nodejs), [Scala](scala)
-  * Examples
-    * [Store Apache Log into Amazon S3](apache-to-s3)
-    * [Store Apache Log into MongoDB](apache-to-mongodb)
-    * [Data Collection into HDFS](http-to-hdfs)
-
-Please refer to the resources below for further steps.
-
-* [ChangeLog of td-agent](http://docs.treasuredata.com/articles/td-agent-changelog)
-* [Chef Cookbook](https://github.com/treasure-data/chef-td-agent/)

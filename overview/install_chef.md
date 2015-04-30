@@ -13,16 +13,3 @@ The chef recipe to install td-agent can be found [here](https://github.com/treas
 ## Run chef-client
 
 Please run chef-client to install td-agent across your machines.
-
-## Next Steps
-
-You're now ready to collect your real logs using Fluentd. Please see the following tutorials to learn how to collect your data from various data sources.
-
-  * Basic Configuration
-    * [Config File](config-file)
-  * Application Logs
-    * [Ruby](ruby), [Java](java), [Python](python), [PHP](php), [Perl](perl), [Node.js](nodejs), [Scala](scala)
-  * Examples
-    * [Store Apache Log into Amazon S3](apache-to-s3)
-    * [Store Apache Log into MongoDB](apache-to-mongodb)
-    * [Data Collection into HDFS](http-to-hdfs)

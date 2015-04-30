@@ -49,16 +49,3 @@ The last command sends Fluentd a message ‘{“json”:”message”}’ with a
 NOTE: It's HIGHLY recommended that you set up <b>ntpd</b> on the node to prevent invalid timestamps in your logs.
 
 NOTE: For large deployments, you must use <a href="http://www.canonware.com/jemalloc/">jemalloc</a> to avoid memory fragmentation. This is already included in the <a href="install-by-rpm">rpm</a> and <a href="install-by-deb">deb</a> packages.
-
-## Next Steps
-
-You're now ready to collect your real logs using Fluentd. Please see the following tutorials to learn how to collect your data from various data sources.
-
-  * Basic Configuration
-    * [Config File](config-file)
-  * Application Logs
-    * [Ruby](ruby), [Java](java), [Python](python), [PHP](php), [Perl](perl), [Node.js](nodejs), [Scala](scala)
-  * Examples
-    * [Store Apache Log into Amazon S3](apache-to-s3)
-    * [Store Apache Log into MongoDB](apache-to-mongodb)
-    * [Data Collection into HDFS](http-to-hdfs)
